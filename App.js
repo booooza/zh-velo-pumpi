@@ -1,21 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
-import HomeScreen from './src/screens/HomeScreen';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { Tabs } from './src/config/router';
 
-export default class App extends React.Component {
-	render() {
-		return (
-			<SafeAreaView style={styles.container}>
-				<HomeScreen />
-			</SafeAreaView>
-		);
-	}
+class App extends React.Component {
+
+  render() {
+    return <Tabs />;
+  }
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		justifyContent: 'flex-start'
-	}
-});
+export default App;
