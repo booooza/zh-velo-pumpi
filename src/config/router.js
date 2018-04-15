@@ -6,10 +6,14 @@ import MapScreen from '../screens/MapScreen';
 import ListScreen from '../screens/ListScreen';
 
 export const Tabs = TabNavigator({
-    MapScreen: {
+    Karte: {
       screen: MapScreen,
     },
-    ListScreen: {
+    Liste: {
       screen: ListScreen,
     },
-});
+},
+{
+    tabBarPosition: 'bottom',
+}
+);
