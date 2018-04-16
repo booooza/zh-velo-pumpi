@@ -82,8 +82,9 @@ class ListScreen extends Component {
     _onPressItem = (index) => {
         console.log("Pressed row: "+index);
         this.props.navigation.navigate(
-            'Directions'
-        );
+            'Directions', {
+              features: this.state.places[index]
+        });
     };
 
 	render() {

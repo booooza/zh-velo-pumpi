@@ -10,6 +10,8 @@ const deltas = {
     longitudeDelta: 0.0421
 };
 
+// const { latitude, longitude, title, type } = this.props.navigation.state.params;
+
 class DirectionScreen extends Component {
 	state = {
         region: null,

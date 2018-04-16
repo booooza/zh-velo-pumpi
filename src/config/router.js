@@ -4,6 +4,7 @@ import { Icon } from 'react-native-elements';
 
 import MapScreen from '../screens/MapScreen';
 import ListScreen from '../screens/ListScreen';
+import DirectionScreen from '../screens/DirectionScreen';
 
 const TabNav = TabNavigator(
     {
@@ -34,4 +35,28 @@ export const StacksOverTabs = StackNavigator({
         title: 'Velopumpen in Zürich',
       },
     },
+});
+
+export const DirectionStack = StackNavigator({
+    Directions: {
+      screen: DirectionScreen,
+      navigationOptions: {
+        title: 'Directions',
+      },
+    },
+});
+
+export const Root = StackNavigator({
+    Home: {
+        screen: StacksOverTabs,
+        navigationOptions: {
+          title: 'Velopumpen in Zürich',
+        },
+    },
+    Directions: {
+      screen: DirectionStack,
+    },
+  }, {
+    mode: 'modal',
+    headerMode: 'none',
 });
