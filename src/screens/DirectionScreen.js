@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Dimensions } from 'react-native';
 import { Location, Permissions, MapView } from 'expo';
+import MapViewDirections from 'react-native-maps-directions';
 
-import DirectionService from '../services/directions';
-import Map from '../components/Map';
+const { width, height } = Dimensions.get('window');
+const ASPECT_RATIO = width / height;
+const GOOGLE_MAPS_APIKEY = 'AIzaSyCsBCVuRulDZe4f3tlGfpVuc_fM0m3iquA';
 
 const deltas = {
     latitudeDelta: 0.0922,
@@ -16,17 +18,22 @@ class DirectionScreen extends Component {
 	state = {
         region: null,
         errorMessage: null,
-        coords: []
+        coords: [],
+        coordinates: [
+            {
+              latitude: 37.3317876,
+              longitude: -122.0054812,
+            },
+            {
+              latitude: 37.771707,
+              longitude: -122.4053769,
+            },
+          ],
 	};
 
 	componentWillMount() {
         this.getLocationAsync();
 	}
-
-    getDirections = async () => {
-        const coords = await DirectionService.getData("40.1884979, 29.061018", "41.0082,28.9784");
-        this.setState({ coords: coords });
-    };
 
 	getLocationAsync = async () => {
 		let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -43,8 +50,16 @@ class DirectionScreen extends Component {
           ...deltas
         };
         await this.setState({ region });
-        await this.getDirections();
-	};
+    };
+    
+    onMapPress = (e) => {
+        this.setState({
+          coordinates: [
+            ...this.state.coordinates,
+            e.nativeEvent.coordinate,
+          ],
+        });
+      }
 
 	render() {
         const { region, coords } = this.state;
@@ -54,24 +69,44 @@ class DirectionScreen extends Component {
 					<Text>Waiting...</Text>
 				</View>
 			);
-		}
-        console.log(JSON.stringify(this.state.coords))
+        }
 		return (
-            <SafeAreaView style={styles.container}>
-                <MapView
-                style={styles.map}
-                initialRegion={region}
-                showsUserLocation
-                showsMyLocationButton
-                >
-                <MapView.Polyline
-                    style={styles.map}
-                    coordinates={coords}
-                    strokeWidth={2}
-                    strokeColor="red"
-                />
-                </MapView>
-            </SafeAreaView>
+            <MapView
+            initialRegion={region}
+            style={StyleSheet.absoluteFill}
+            ref={c => this.mapView = c}
+            onPress={this.onMapPress}
+        >
+            {this.state.coordinates.map((coordinate, index) =>
+            <MapView.Marker key={`coordinate_${index}`} coordinate={coordinate} />
+            )}
+            {(this.state.coordinates.length >= 2) && (
+            <MapViewDirections
+                origin={this.state.coordinates[0]}
+                waypoints={ (this.state.coordinates.length > 2) ? this.state.coordinates.slice(1, -1): null}
+                destination={this.state.coordinates[this.state.coordinates.length-1]}
+                apikey={GOOGLE_MAPS_APIKEY}
+                strokeWidth={3}
+                strokeColor="hotpink"
+                onStart={(params) => {
+                console.log(`Started routing between "${params.origin}" and "${params.destination}"`);
+                }}
+                onReady={(result) => {
+                this.mapView.fitToCoordinates(result.coordinates, {
+                    edgePadding: {
+                    right: (width / 20),
+                    bottom: (height / 20),
+                    left: (width / 20),
+                    top: (height / 20),
+                    }
+                });
+                }}
+                onError={(errorMessage) => {
+                // console.log('GOT AN ERROR');
+                }}
+            />
+            )}
+        </MapView>
 		);
 	}
 }
