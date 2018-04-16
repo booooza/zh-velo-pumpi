@@ -2,6 +2,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "dependencies": {
+    "@mapbox/polyline": "^1.0.0",
     "axios": "^0.18.0",
     "expo": "^26.0.0",
     "react": "16.3.0-alpha.1",
