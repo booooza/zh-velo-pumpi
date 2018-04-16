@@ -12,8 +12,19 @@ const deltas = {
 export default class Map extends Component {
 
     renderMarkers() {
+        _onCalloutPress = (data) => {
+            console.log("Pressed callout: " 
+            + data.coordinate.latitude + " " 
+            + data.coordinate.latitude);
+            this.props.navigation.navigate(
+                'Directions', {
+                    coordinate: data.coordinate
+                }
+            );
+        };
+        
         return this.props.places.map((place, i) => (
-          <Marker 
+          <Marker {...this.props}
             key={i}
             title={place.title}
             description={place.type}
@@ -21,6 +32,7 @@ export default class Map extends Component {
                 latitude: place.latitude,
                 longitude: place.longitude,
             }}
+            onCalloutPress={e => _onCalloutPress(e.nativeEvent)}
           />
         ));
     }

@@ -56,7 +56,7 @@ class MapScreen extends Component {
 
 		return (
             <SafeAreaView style={styles.container}>
-                <Map
+                <Map {...this.props}
                 region={region}
                 places={this.state.places}
                 />
