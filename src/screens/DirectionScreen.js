@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import { Location, Permissions } from 'expo';
 
-import BikeService from '../services/velopumpen';
+import DirectionService from '../services/directions';
 import Map from '../components/Map';
 
 const deltas = {
@@ -10,11 +10,14 @@ const deltas = {
     longitudeDelta: 0.0421
 };
 
-class MapScreen extends Component {
+class DirectionScreen extends Component {
 	state = {
         region: null,
-        places: [],
-		errorMessage: null
+        errorMessage: null,
+        coords: [{
+            latitude:-6.270565,
+            longitude:106.759550,
+        }]
 	};
 
 	componentWillMount() {
@@ -57,8 +60,13 @@ class MapScreen extends Component {
 		return (
             <SafeAreaView style={styles.container}>
                 <Map
-                region={region}
-                places={this.state.places}
+                initialRegion={region}
+                />
+                <MapView.Polyline
+                    coordinates={this.state.coords}
+                    strokeWidth={2}
+                    strokeColor="red"/>
+
                 />
             </SafeAreaView>
 		);
@@ -73,4 +81,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default MapScreen;
+export default DirectionScreen;
