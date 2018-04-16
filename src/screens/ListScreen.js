@@ -69,7 +69,7 @@ class ListScreen extends Component {
         await this.getBikeData();
 	};
 
-    _keyExtractor = (item, index) => index;
+    _keyExtractor = (item, index) => index.toString();
   
     _renderItem = ({item, index}) => (
         <ListItem
