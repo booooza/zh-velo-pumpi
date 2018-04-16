@@ -1,19 +1,37 @@
 import React from 'react';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import MapScreen from '../screens/MapScreen';
 import ListScreen from '../screens/ListScreen';
 
-export const Tabs = TabNavigator({
-    Karte: {
-      screen: MapScreen,
+const TabNav = TabNavigator(
+    {
+        MapScreen: {
+        screen: MapScreen,
+        navigationOptions: {
+          title: 'Karte',
+        },
+      },
+      ListScreen: {
+        screen: ListScreen,
+        navigationOptions: {
+          title: 'Liste',
+        },
+      },
     },
-    Liste: {
-      screen: ListScreen,
+    {
+      tabBarPosition: 'bottom',
+      animationEnabled: false,
+      swipeEnabled: false,
+    }
+  );
+  
+export const StacksOverTabs = StackNavigator({
+    Home: {
+      screen: TabNav,
+      navigationOptions: {
+        title: 'Velopumpen in Zürich',
+      },
     },
-},
-{
-    tabBarPosition: 'bottom',
-}
-);
+});
