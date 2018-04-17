@@ -72,7 +72,7 @@ class ListScreen extends Component {
     _keyExtractor = (item, index) => index.toString();
   
     _renderItem = ({item, index}) => (
-        <ListItem
+        <ListItem 
           item={item}
           index={index}
           onPressItem={this._onPressItem}
@@ -83,7 +83,7 @@ class ListScreen extends Component {
         console.log("Pressed row: "+index);
         this.props.navigation.navigate(
             'Directions', {
-              features: this.state.places[index]
+              data: this.state.places[index]
         });
     };
 

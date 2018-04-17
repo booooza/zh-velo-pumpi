@@ -12,8 +12,6 @@ const deltas = {
     longitudeDelta: 0.0421
 };
 
-// const { params } = this.props.navigation.state.params;
-
 class DirectionScreen extends Component {
 	state = {
         region: null,
@@ -51,17 +49,10 @@ class DirectionScreen extends Component {
         };
         await this.setState({ region });
     };
-    
-    onMapPress = (e) => {
-        this.setState({
-          coordinates: [
-            ...this.state.coordinates,
-            e.nativeEvent.coordinate,
-          ],
-        });
-      }
-
+      
 	render() {
+        const params = this.props.navigation.state.params;
+
         const { region, coords } = this.state;
 		if (!coords) {
 			return (
@@ -70,21 +61,26 @@ class DirectionScreen extends Component {
 				</View>
 			);
         }
-		return (
+
+        return (
             <MapView
             initialRegion={region}
             style={StyleSheet.absoluteFill}
             ref={c => this.mapView = c}
-            onPress={this.onMapPress}
+            showsUserLocation
+            showsMyLocationButton
         >
             {this.state.coordinates.map((coordinate, index) =>
             <MapView.Marker key={`coordinate_${index}`} coordinate={coordinate} />
             )}
             {(this.state.coordinates.length >= 2) && (
             <MapViewDirections
-                origin={this.state.coordinates[0]}
+                origin={region}
                 waypoints={ (this.state.coordinates.length > 2) ? this.state.coordinates.slice(1, -1): null}
-                destination={this.state.coordinates[this.state.coordinates.length-1]}
+                destination={{
+                    longitude: params.data.longitude,
+                    latitude: params.data.latitude
+                }}
                 apikey={GOOGLE_MAPS_APIKEY}
                 strokeWidth={3}
                 strokeColor="hotpink"

@@ -18,7 +18,7 @@ export default class Map extends Component {
             + data.coordinate.latitude);
             this.props.navigation.navigate(
                 'Directions', {
-                    coordinate: data.coordinate
+                    data: data.coordinate
                 }
             );
         };
