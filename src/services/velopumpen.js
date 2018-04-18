@@ -9,7 +9,6 @@ const getData = data => {
     .get('/dataset/f25cf7cb-e289-4197-a76c-37eee69d8b90/resource/4cea6136-d927-43b5-b1ae-4fce8a52058f/download/velopumpstation.json')
     .then(res =>
       res.data.features.map(feature => {
-        // console.log('Fetched data from API: ' + JSON.stringify(res.data))
         return {
           longitude: feature.geometry.coordinates[0],
           latitude: feature.geometry.coordinates[1],
