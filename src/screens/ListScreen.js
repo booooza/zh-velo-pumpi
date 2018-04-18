@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableHighlight, FlatList } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableHighlight, FlatList, Image } from 'react-native';
 import { Location, Permissions } from 'expo';
 
 import BikeService from '../services/velopumpen';
@@ -22,7 +22,7 @@ class ListItem extends React.PureComponent {
           underlayColor='#dddddd'>
           <View>
             <View style={styles.rowContainer}>
-              {/* <Image style={styles.thumb} source={require('./Resources/pump.png')} /> */}
+              <Image style={styles.thumb} source={require('../../assets/baloon.png')} />
               <View style={styles.textContainer}>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.type}>{item.type}</Text>
