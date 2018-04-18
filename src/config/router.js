@@ -41,7 +41,7 @@ export const DirectionStack = StackNavigator({
     Directions: {
       screen: DirectionScreen,
       navigationOptions: {
-        title: 'Directions',
+        title: 'Navigation',
       },
     },
 });
