@@ -1,8 +1,8 @@
 {
     "expo": {
-      "name": "locator-app",
+      "name": "zh-velo-pumpi",
       "description": "This project is really great.",
-      "slug": "locator-app",
+      "slug": "zh-velo-pumpi",
       "privacy": "public",
       "sdkVersion": "26.0.0",
       "platforms": ["ios", "android"],
