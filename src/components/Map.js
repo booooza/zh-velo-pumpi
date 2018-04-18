@@ -18,7 +18,7 @@ export default class Map extends Component {
             + data.coordinate.latitude);
             this.props.navigation.navigate(
                 'Directions', {
-                    data: data.coordinate
+                    data: data.coordinate,
                 }
             );
         };
@@ -33,6 +33,7 @@ export default class Map extends Component {
                 longitude: place.longitude,
             }}
             onCalloutPress={e => _onCalloutPress(e.nativeEvent)}
+            image={require('../../assets/baloon.png')}
           />
         ));
     }
