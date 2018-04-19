@@ -12,8 +12,7 @@ Basierend auf:
  - React Native Maps Directions & polyline
  - Swiss Open Data
 
-![Alt text](/mapview.png?raw=true "Mapview")
-![Alt text](/directions.png?raw=true "Directions")
+![Alt text](/app.png?raw=true "App Screenshot")
 
 ## Installation
 ### Dependencies
