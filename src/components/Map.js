@@ -33,7 +33,7 @@ export default class Map extends Component {
                 longitude: place.longitude,
             }}
             onCalloutPress={e => _onCalloutPress(e.nativeEvent)}
-            image={require('../../assets/baloon.png')}
+            // image={require('../../assets/baloon.png')}
           />
         ));
     }
