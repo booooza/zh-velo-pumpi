@@ -12,6 +12,9 @@ Basierend auf:
  - React Native Maps Directions & polyline
  - Swiss Open Data
 
+![Alt text](/mapview.png?raw=true "Mapview")
+![Alt text](/directions.png?raw=true "Directions")
+
 ## Installation
 ### Dependencies
 Go to the project root and install all dependencies:
