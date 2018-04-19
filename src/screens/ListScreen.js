@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableHighlight, FlatList, Image } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableHighlight, FlatList, Image, ActivityIndicator } from 'react-native';
 import { Location, Permissions } from 'expo';
 
 import BikeService from '../services/velopumpen';
@@ -36,14 +36,20 @@ class ListItem extends React.PureComponent {
 }
 
 class ListScreen extends Component {
-	state = {
-        region: null,
-        places: [],
-		errorMessage: null
-	};
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      region: null,
+      places: [],
+      errorMessage: null,
+      isLoading: true,
+    };
+  }
 
   static navigationOptions = {
     title: 'Liste',
+    headerRight: (<ActivityIndicator style={{paddingRight: 20}} size="small"/>)
   };
 
 	componentWillMount() {
@@ -92,14 +98,7 @@ class ListScreen extends Component {
     };
 
 	render() {
-        const { region, places } = this.state;
-		if (!places) {
-			return (
-				<View>
-					<Text>Waiting...</Text>
-				</View>
-			);
-		}
+    const { region, places } = this.state;       
 
 		return (
           <FlatList

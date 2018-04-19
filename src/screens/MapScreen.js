@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, ActivityIndicator } from 'react-native';
 import { Location, Permissions } from 'expo';
 
 import BikeService from '../services/velopumpen';
@@ -19,6 +19,7 @@ class MapScreen extends Component {
 
 	static navigationOptions = {
 		title: 'Karte',
+		headerRight: (<ActivityIndicator style={{paddingRight: 20}} size="small"/>)
 	};
 
 	componentWillMount() {
@@ -59,7 +60,7 @@ class MapScreen extends Component {
 		}
 
 		return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView style={styles.container}>			
                 <Map {...this.props}
                 region={region}
                 places={this.state.places}
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#fff',
 		justifyContent: 'flex-start'
-	}
+	},
 });
 
 export default MapScreen;
