@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, ActivityIndicator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import MapScreen from '../screens/MapScreen';
@@ -10,15 +10,9 @@ const TabNav = TabNavigator(
     {
         MapScreen: {
         screen: MapScreen,
-        navigationOptions: {
-          title: 'Karte',
-        },
       },
       ListScreen: {
         screen: ListScreen,
-        navigationOptions: {
-          title: 'Liste',
-        },
       },
     },
     {
@@ -40,18 +34,12 @@ export const StacksOverTabs = StackNavigator({
 export const DirectionStack = StackNavigator({
     Directions: {
       screen: DirectionScreen,
-      navigationOptions: {
-        title: 'Navigation',
-      },
     },
 });
 
 export const Root = StackNavigator({
     Home: {
-        screen: StacksOverTabs,
-        navigationOptions: {
-          title: 'Velopumpen in Zürich',
-        },
+      screen: StacksOverTabs,
     },
     Directions: {
       screen: DirectionStack,

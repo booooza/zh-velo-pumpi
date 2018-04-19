@@ -17,6 +17,10 @@ class MapScreen extends Component {
 		errorMessage: null
 	};
 
+	static navigationOptions = {
+		title: 'Karte',
+	};
+
 	componentWillMount() {
 		this.getLocationAsync();
 	}

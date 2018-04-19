@@ -27,6 +27,10 @@ class DirectionScreen extends Component {
               longitude: -122.4053769,
             },
           ],
+    };
+    
+    static navigationOptions = {
+		title: 'Navigation',
 	};
 
 	componentWillMount() {

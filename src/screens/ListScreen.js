@@ -13,7 +13,7 @@ class ListItem extends React.PureComponent {
     _onPress = () => {
       this.props.onPressItem(this.props.index);
     }
-  
+
     render() {
       const item = this.props.item;
       return (
@@ -41,6 +41,10 @@ class ListScreen extends Component {
         places: [],
 		errorMessage: null
 	};
+
+  static navigationOptions = {
+    title: 'Liste',
+  };
 
 	componentWillMount() {
 		this.getLocationAsync();
