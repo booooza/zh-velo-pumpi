@@ -113,8 +113,8 @@ class ListScreen extends Component {
 
 const styles = StyleSheet.create({
     thumb: {
-      width: 80,
-      height: 80,
+      width: 50,
+      height: 50,
       marginRight: 10
     },
     textContainer: {
