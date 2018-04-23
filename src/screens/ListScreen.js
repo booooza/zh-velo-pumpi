@@ -48,8 +48,9 @@ class ListScreen extends Component {
   }
 
   static navigationOptions = {
+    tabBarLabel: 'Liste',
     title: 'Liste',
-    headerRight: (<ActivityIndicator style={{paddingRight: 20}} size="small"/>)
+    // headerRight: (<ActivityIndicator style={{paddingRight: 20}} size="small"/>)
   };
 
 	componentWillMount() {

@@ -18,8 +18,7 @@ class MapScreen extends Component {
 	};
 
 	static navigationOptions = {
-		title: 'Karte',
-		headerRight: (<ActivityIndicator style={{paddingRight: 20}} size="small"/>)
+		tabBarLabel: 'Karte',
 	};
 
 	componentWillMount() {
