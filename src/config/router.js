@@ -1,6 +1,5 @@
 import React from 'react';
 import { TabNavigator, StackNavigator, ActivityIndicator } from 'react-navigation';
-import { Icon } from 'react-native-elements';
 
 import MapScreen from '../screens/MapScreen';
 import ListScreen from '../screens/ListScreen';
