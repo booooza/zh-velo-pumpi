@@ -51,7 +51,8 @@ class ListScreen extends Component {
   };
 
 	componentWillMount() {
-		this.getLocationAsync();
+    this.getLocationAsync();
+    this.getPlacesAsync();
 	}
 
 	getLocationAsync = async () => {
@@ -70,16 +71,18 @@ class ListScreen extends Component {
         };
         await this.setState({ region });
 
-        // TODO: move to separate function
-        const places = this.props.screenProps.data.features.map(feature => {
-          return {
-            longitude: feature.geometry.coordinates[0],
-            latitude: feature.geometry.coordinates[1],
-            title: feature.properties.bezeichnung,
-            type: feature.properties.typ,
-          };
-          })
-        await this.setState({ places });
+  };
+  
+  getPlacesAsync = async () => {
+		const places = this.props.screenProps.data.features.map(feature => {
+			return {
+			  longitude: feature.geometry.coordinates[0],
+			  latitude: feature.geometry.coordinates[1],
+			  title: feature.properties.bezeichnung,
+			  type: feature.properties.typ,
+			};
+		  })
+		await this.setState({ places });
 	};
 
     _keyExtractor = (item, index) => index.toString();

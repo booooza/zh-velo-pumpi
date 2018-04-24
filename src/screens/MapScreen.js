@@ -22,6 +22,7 @@ class MapScreen extends Component {
 
 	componentWillMount() {
 		this.getLocationAsync();
+		this.getPlacesAsync();
 	}
 
 	getLocationAsync = async () => {
@@ -39,7 +40,9 @@ class MapScreen extends Component {
           ...deltas
         };
 		await this.setState({ region });
-		
+	};
+
+	getPlacesAsync = async () => {
 		const places = this.props.screenProps.data.features.map(feature => {
 			return {
 			  longitude: feature.geometry.coordinates[0],
