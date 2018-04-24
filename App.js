@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppRegistry, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { Root } from './src/config/router';
-let data = require('./src/data/velopumpstation.json'); 
+let data = require('./assets/velopumpstation.json'); 
 
 class App extends React.Component {
 
