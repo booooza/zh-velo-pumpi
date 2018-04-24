@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Dimensions, Button } from 'react-native';
 import { Location, Permissions, MapView } from 'expo';
 import MapViewDirections from 'react-native-maps-directions';
 
@@ -17,21 +17,13 @@ class DirectionScreen extends Component {
 	state = {
         region: null,
         errorMessage: null,
-        coords: [],
-        coordinates: [
-            {
-              latitude: 37.3317876,
-              longitude: -122.0054812,
-            },
-            {
-              latitude: 37.771707,
-              longitude: -122.4053769,
-            },
-          ],
     };
     
-    static navigationOptions = {
-		title: 'Navigation',
+    static navigationOptions = ({ navigation }) => {
+        const { params } = navigation.state;
+        return {            
+          title: params ? params.title : 'Navigation',
+        }
     };
     
 	componentWillMount() {
@@ -58,8 +50,8 @@ class DirectionScreen extends Component {
 	render() {
         const params = this.props.navigation.state.params;
 
-        const { region, coords } = this.state;
-		if (!coords) {
+        const { region } = this.state;
+		if (!region) {
 			return (
 				<View>
 					<Text>Waiting...</Text>
@@ -68,6 +60,7 @@ class DirectionScreen extends Component {
         }
 
         return (
+            <SafeAreaView style={styles.container}>	
             <MapView
             initialRegion={region}
             style={StyleSheet.absoluteFill}
@@ -75,13 +68,8 @@ class DirectionScreen extends Component {
             showsUserLocation
             showsMyLocationButton
         >
-            {this.state.coordinates.map((coordinate, index) =>
-            <MapView.Marker key={`coordinate_${index}`} coordinate={coordinate} />
-            )}
-            {(this.state.coordinates.length >= 2) && (
             <MapViewDirections
                 origin={region}
-                waypoints={ (this.state.coordinates.length > 2) ? this.state.coordinates.slice(1, -1): null}
                 destination={{
                     longitude: params.data.longitude,
                     latitude: params.data.latitude
@@ -91,7 +79,7 @@ class DirectionScreen extends Component {
                 strokeWidth={3}
                 strokeColor="hotpink"
                 onStart={(params) => {
-                console.log(`Started routing between "${params.origin}" and "${params.destination}"`);
+                    console.log(`Started routing from "${params.origin}" to "${params.destination}"`);
                 }}
                 onReady={(result) => {
                 this.mapView.fitToCoordinates(result.coordinates, {
@@ -107,8 +95,7 @@ class DirectionScreen extends Component {
                 // console.log('GOT AN ERROR');
                 }}
             />
-            )}
-            <Marker {...this.props}
+            <Marker
             title="test"
             description="test"
             coordinate={{
@@ -117,6 +104,7 @@ class DirectionScreen extends Component {
             }}
             />
         </MapView>
+        </SafeAreaView>
 		);
 	}
 }

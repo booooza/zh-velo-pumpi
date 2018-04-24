@@ -12,19 +12,23 @@ const deltas = {
 export default class Map extends Component {
 
     renderMarkers() {
+        console.log(JSON.stringify(this.props.screenProps.data))
+
         _onCalloutPress = (data) => {
             console.log("Pressed callout: " 
+            + data.title + " "
             + data.coordinate.latitude + " " 
             + data.coordinate.latitude);
             this.props.navigation.navigate(
                 'Directions', {
                     data: data.coordinate,
+                    title: data.title,
                 }
             );
         };
         
         return this.props.places.map((place, i) => (
-          <Marker {...this.props}
+          <Marker
             key={i}
             title={place.title}
             description={place.type}
@@ -32,7 +36,14 @@ export default class Map extends Component {
                 latitude: place.latitude,
                 longitude: place.longitude,
             }}
-            onCalloutPress={e => _onCalloutPress(e.nativeEvent)}
+            onCalloutPress={data => _onCalloutPress({
+                title: place.title,
+                coordinate: {
+                    latitude: place.latitude,
+                    longitude: place.longitude,
+                }
+            })
+            }
             // image={require('../../assets/baloon.png')}
           />
         ));
