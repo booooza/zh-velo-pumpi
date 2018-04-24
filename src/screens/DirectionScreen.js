@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, StyleSheet, Dimensions } from 'react-native';
 import { Location, Permissions, MapView } from 'expo';
 import MapViewDirections from 'react-native-maps-directions';
 
+const Marker = MapView.Marker;
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const GOOGLE_MAPS_APIKEY = 'AIzaSyCsBCVuRulDZe4f3tlGfpVuc_fM0m3iquA';
@@ -107,6 +108,14 @@ class DirectionScreen extends Component {
                 }}
             />
             )}
+            <Marker {...this.props}
+            title="test"
+            description="test"
+            coordinate={{
+                longitude: params.data.longitude,
+                latitude: params.data.latitude
+            }}
+            />
         </MapView>
 		);
 	}
