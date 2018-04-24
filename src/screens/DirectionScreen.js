@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, Dimensions, Button } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Dimensions, Button, ActivityIndicator } from 'react-native';
 import { Location, Permissions, MapView } from 'expo';
 import MapViewDirections from 'react-native-maps-directions';
 
@@ -53,8 +53,8 @@ class DirectionScreen extends Component {
         const { region } = this.state;
 		if (!region) {
 			return (
-				<View>
-					<Text>Waiting...</Text>
+				<View >
+					<ActivityIndicator size="large" color="#0000ff" />
 				</View>
 			);
         }
