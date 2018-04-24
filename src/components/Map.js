@@ -38,13 +38,6 @@ export default class Map extends Component {
         ));
     }
 
-	static defaultProps = {
-		location: {
-			latitude: 37.321996988,
-			longitude: -122.0325472123455
-		}
-	};
-
 	render() {
 		const { region } = this.props
 		return (
