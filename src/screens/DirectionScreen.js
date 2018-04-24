@@ -31,8 +31,8 @@ class DirectionScreen extends Component {
     
     static navigationOptions = {
 		title: 'Navigation',
-	};
-
+    };
+    
 	componentWillMount() {
         this.getLocationAsync();
 	}
@@ -85,6 +85,7 @@ class DirectionScreen extends Component {
                     longitude: params.data.longitude,
                     latitude: params.data.latitude
                 }}
+                mode="bicycling"
                 apikey={GOOGLE_MAPS_APIKEY}
                 strokeWidth={3}
                 strokeColor="hotpink"
