@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Dimensions, Button, ActivityIndicator } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { Location, Permissions, MapView } from 'expo';
 import MapViewDirections from 'react-native-maps-directions';
 
@@ -23,6 +24,12 @@ class DirectionScreen extends Component {
         const { params } = navigation.state;
         return {            
           title: params ? params.title : 'Navigation',
+          headerRight: (
+            <Button
+              onPress={() => navigation.dispatch(NavigationActions.back())}
+              title="Zurück"
+            />
+          ),
         }
     };
     
