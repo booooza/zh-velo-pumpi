@@ -99,7 +99,8 @@ class ListScreen extends Component {
         console.log("Pressed row: "+index);
         this.props.navigation.navigate(
             'Directions', {
-              data: this.state.places[index]
+              data: this.state.places[index],
+              title: this.state.places[index].title
         });
     };
 
