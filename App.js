@@ -3,11 +3,10 @@ import { AppRegistry, StyleSheet, Text, View, SafeAreaView } from 'react-native'
 import { Root } from './src/config/router';
 import { Asset, AppLoading } from 'expo';
 
-
 class App extends React.Component {
 
   state = {
-    isReady: false,
+    isReady: true,
   };
   
   render() {
@@ -20,7 +19,7 @@ class App extends React.Component {
         />
       );
     }
-
+    
     let data = require('./assets/velopumpstation.json'); 
     return (
         <Root 
@@ -30,16 +29,9 @@ class App extends React.Component {
   }
 
   async _cacheResourcesAsync() {
-    const files = [
-      require('./assets/velopumpstation.json'),
-    ];
-
-    const cacheFiles = files.map((file) => {
-      return Asset.fromModule(file).downloadAsync();
-    });
-    return Promise.all(cacheFiles)
+    // TODO
+    return
   }
-
 }
 
 export default App;
