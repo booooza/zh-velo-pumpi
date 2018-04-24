@@ -12,8 +12,6 @@ const deltas = {
 export default class Map extends Component {
 
     renderMarkers() {
-        console.log(JSON.stringify(this.props.screenProps.data))
-
         _onCalloutPress = (data) => {
             console.log("Pressed callout: " 
             + data.title + " "
