@@ -16,7 +16,6 @@ const TabNav = TabNavigator(
     },
     {
       tabBarPosition: 'bottom',
-      animationEnabled: false,
       swipeEnabled: false,
     }
   );
