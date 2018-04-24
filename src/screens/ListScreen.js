@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableHighlight, FlatList, Image, ActivityIndicator } from 'react-native';
 import { Location, Permissions } from 'expo';
 
-import BikeService from '../services/velopumpen';
-
 const deltas = {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421
@@ -50,17 +48,11 @@ class ListScreen extends Component {
   static navigationOptions = {
     tabBarLabel: 'Liste',
     title: 'Liste',
-    // headerRight: (<ActivityIndicator style={{paddingRight: 20}} size="small"/>)
   };
 
 	componentWillMount() {
 		this.getLocationAsync();
 	}
-
-    getBikeData = async () => {
-        const places = await BikeService.getData();
-        this.setState({ places });
-    };
 
 	getLocationAsync = async () => {
 		let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -77,7 +69,17 @@ class ListScreen extends Component {
           ...deltas
         };
         await this.setState({ region });
-        await this.getBikeData();
+
+        // TODO: move to separate function
+        const places = this.props.screenProps.data.features.map(feature => {
+          return {
+            longitude: feature.geometry.coordinates[0],
+            latitude: feature.geometry.coordinates[1],
+            title: feature.properties.bezeichnung,
+            type: feature.properties.typ,
+          };
+          })
+        await this.setState({ places });
 	};
 
     _keyExtractor = (item, index) => index.toString();

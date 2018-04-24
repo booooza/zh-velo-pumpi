@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, ActivityIndicator } from 'react-native';
 import { Location, Permissions } from 'expo';
 
-import BikeService from '../services/velopumpen';
 import Map from '../components/Map';
 
 const deltas = {
@@ -25,11 +24,6 @@ class MapScreen extends Component {
 		this.getLocationAsync();
 	}
 
-    getBikeData = async () => {
-        const places = await BikeService.getData();
-        this.setState({ places });
-    };
-
 	getLocationAsync = async () => {
 		let { status } = await Permissions.askAsync(Permissions.LOCATION);
 		if (status !== 'granted') {
@@ -44,8 +38,17 @@ class MapScreen extends Component {
           longitude: location.coords.longitude,
           ...deltas
         };
-        await this.setState({ region });
-        await this.getBikeData();
+		await this.setState({ region });
+		
+		const places = this.props.screenProps.data.features.map(feature => {
+			return {
+			  longitude: feature.geometry.coordinates[0],
+			  latitude: feature.geometry.coordinates[1],
+			  title: feature.properties.bezeichnung,
+			  type: feature.properties.typ,
+			};
+		  })
+		await this.setState({ places });
 	};
 
 	render() {
