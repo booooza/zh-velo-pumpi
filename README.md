@@ -7,7 +7,7 @@
 Finde öffentliche Zürcher Velopumpstation in einer einfach zu bedienenden App.
 
 Basierend auf:
- - Expo
+ - [Expo](https://exp.host/@booooza/zhvelopumpi)
  - React Native
  - React Native Maps Directions & polyline
  - Swiss Open Data
