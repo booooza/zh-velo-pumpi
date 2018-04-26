@@ -1,68 +1,63 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { MapView } from 'expo';
+import React, { Component } from 'react'
+import { StyleSheet } from 'react-native'
+import { MapView } from 'expo'
 
-const Marker = MapView.Marker;
-
-const deltas = {
-	latitudeDelta: 0.0922,
-	longitudeDelta: 0.0421
-};
+const { Marker } = MapView
 
 export default class Map extends Component {
-
-    renderMarkers() {
-        _onCalloutPress = (data) => {
-            console.log("Pressed callout: " 
-            + data.coordinate.latitude + " " 
-            + data.coordinate.latitude);
-            this.props.navigation.navigate(
-                'Directions', {
-                    data: data.coordinate,
-                }
-            );
-        };
-        
-        return this.props.places.map((place, i) => (
-          <Marker {...this.props}
-            key={i}
-            title={place.title}
-            description={place.type}
-            coordinate={{
-                latitude: place.latitude,
-                longitude: place.longitude,
-            }}
-            onCalloutPress={e => _onCalloutPress(e.nativeEvent)}
-            image={require('../../assets/baloon.png')}
-          />
-        ));
+  renderMarkers() {
+    const onCalloutPress = (data) => {
+      console.log(`Pressed callout: 
+        ${data.title} 
+        ${data.coordinate.latitude} 
+        ${data.coordinate.latitude}`)
+      this.props.navigation.navigate('Directions', {
+        data: data.coordinate,
+        title: data.title,
+      })
     }
 
-	static defaultProps = {
-		location: {
-			latitude: 37.321996988,
-			longitude: -122.0325472123455
-		}
-	};
+    return this.props.places.map(place => (
+      <Marker
+        key={place.title}
+        title={place.title}
+        description={place.type}
+        coordinate={{
+          latitude: place.latitude,
+          longitude: place.longitude,
+        }}
+        onCalloutPress={() =>
+          onCalloutPress({
+            title: place.title,
+            coordinate: {
+              latitude: place.latitude,
+              longitude: place.longitude,
+            },
+          })
+        }
+        // image={require('../../assets/baloon.png')}
+      />
+    ))
+  }
 
-	render() {
-		const { region } = this.props
-		return (
-            <MapView
-            style={styles.container}
-            region={region}
-            showsUserLocation
-            showsMyLocationButton
-            >
-              {this.renderMarkers()}
-            </MapView>
-		);
-	}
+  render() {
+    const { region } = this.props
+    return (
+      <MapView
+        style={styles.container}
+        region={region}
+        showsUserLocation
+        showsMyLocationButton
+      >
+        {this.renderMarkers()}
+      </MapView>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-	container: {
-		width: '100%',
-		height: '100%'
-	}
-});
+  container: {
+    width: '100%',
+    height: '100%',
+  },
+})

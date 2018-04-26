@@ -1,76 +1,78 @@
-import React, { Component } from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import { Location, Permissions } from 'expo';
+import React, { Component } from 'react'
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { Location, Permissions } from 'expo'
 
-import BikeService from '../services/velopumpen';
-import Map from '../components/Map';
+import Map from '../components/Map'
 
 const deltas = {
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421
-};
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+}
 
 class MapScreen extends Component {
-	state = {
-        region: null,
-        places: [],
-		errorMessage: null
-	};
+  static navigationOptions = {
+    tabBarLabel: 'Karte',
+  }
 
-	componentWillMount() {
-		this.getLocationAsync();
-	}
+  state = {
+    region: null,
+    places: [],
+  }
 
-    getBikeData = async () => {
-        const places = await BikeService.getData();
-        this.setState({ places });
-    };
+  componentWillMount() {
+    this.getLocationAsync()
+    this.getPlacesAsync()
+  }
 
-	getLocationAsync = async () => {
-		let { status } = await Permissions.askAsync(Permissions.LOCATION);
-		if (status !== 'granted') {
-			this.setState({
-				errorMessage: 'Permission to access location was denied'
-			});
-		}
+  getLocationAsync = async () => {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION)
+    if (status !== 'granted') {
+      console.log('No access to location')
+    }
 
-        let location = await Location.getCurrentPositionAsync({});
-        const region = {
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-          ...deltas
-        };
-        await this.setState({ region });
-        await this.getBikeData();
-	};
+    const location = await Location.getCurrentPositionAsync({})
+    const region = {
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+      ...deltas,
+    }
+    await this.setState({ region })
+  }
 
-	render() {
-        const { region, places } = this.state;
-		if (!places) {
-			return (
-				<View>
-					<Text>Waiting...</Text>
-				</View>
-			);
-		}
+  getPlacesAsync = async () => {
+    const places = this.props.screenProps.data.features.map(feature => ({
+      longitude: feature.geometry.coordinates[0],
+      latitude: feature.geometry.coordinates[1],
+      title: feature.properties.bezeichnung,
+      type: feature.properties.typ,
+    }))
+    await this.setState({ places })
+  }
 
-		return (
-            <SafeAreaView style={styles.container}>
-                <Map {...this.props}
-                region={region}
-                places={this.state.places}
-                />
-            </SafeAreaView>
-		);
-	}
+  render() {
+    const { region, places } = this.state
+    if (!places) {
+      return (
+        <View>
+          <Text>Waiting...</Text>
+        </View>
+      )
+    }
+
+    return (
+      <SafeAreaView style={styles.container}>
+        <Map {...this.props} region={region} places={this.state.places} />
+      </SafeAreaView>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		justifyContent: 'flex-start'
-	}
-});
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+  },
+})
 
-export default MapScreen;
+export default MapScreen

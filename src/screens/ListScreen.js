@@ -1,139 +1,87 @@
-import React, { Component } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableHighlight, FlatList, Image } from 'react-native';
-import { Location, Permissions } from 'expo';
+import React, { Component } from 'react'
+import { FlatList } from 'react-native'
+import { Location, Permissions } from 'expo'
 
-import BikeService from '../services/velopumpen';
+import ListItem from '../components/ListItem'
 
 const deltas = {
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421
-};
-
-class ListItem extends React.PureComponent {
-    _onPress = () => {
-      this.props.onPressItem(this.props.index);
-    }
-  
-    render() {
-      const item = this.props.item;
-      return (
-        <TouchableHighlight
-          onPress={this._onPress}
-          underlayColor='#dddddd'>
-          <View>
-            <View style={styles.rowContainer}>
-              <Image style={styles.thumb} source={require('../../assets/baloon.png')} />
-              <View style={styles.textContainer}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.type}>{item.type}</Text>
-              </View>
-            </View>
-            <View style={styles.separator}/>
-          </View>
-        </TouchableHighlight>
-      );
-    }
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
 }
 
 class ListScreen extends Component {
-	state = {
-        region: null,
-        places: [],
-		errorMessage: null
-	};
+  static navigationOptions = {
+    tabBarLabel: 'Liste',
+    title: 'Liste',
+  }
 
-	componentWillMount() {
-		this.getLocationAsync();
-	}
+  constructor(props) {
+    super(props)
 
-    getBikeData = async () => {
-        const places = await BikeService.getData();
-        this.setState({ places });
-    };
+    this.state = {
+      region: null,
+      places: [],
+    }
+  }
 
-	getLocationAsync = async () => {
-		let { status } = await Permissions.askAsync(Permissions.LOCATION);
-		if (status !== 'granted') {
-			this.setState({
-				errorMessage: 'Permission to access location was denied'
-			});
-		}
+  componentWillMount() {
+    this.getLocationAsync()
+    this.getPlacesAsync()
+  }
 
-        let location = await Location.getCurrentPositionAsync({});
-        const region = {
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
-          ...deltas
-        };
-        await this.setState({ region });
-        await this.getBikeData();
-	};
+  onPressItem = (index) => {
+    console.log(`Pressed row: ${index}`)
+    this.props.navigation.navigate('Directions', {
+      data: this.state.places[index],
+      title: this.state.places[index].title,
+    })
+  }
 
-    _keyExtractor = (item, index) => index.toString();
-  
-    _renderItem = ({item, index}) => (
-        <ListItem 
-          item={item}
-          index={index}
-          onPressItem={this._onPressItem}
-        />
-    );
-      
-    _onPressItem = (index) => {
-        console.log("Pressed row: "+index);
-        this.props.navigation.navigate(
-            'Directions', {
-              data: this.state.places[index]
-        });
-    };
+  getLocationAsync = async () => {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION)
+    if (status !== 'granted') {
+      console.log('No access to location')
+    }
 
-	render() {
-        const { region, places } = this.state;
-		if (!places) {
-			return (
-				<View>
-					<Text>Waiting...</Text>
-				</View>
-			);
-		}
+    const location = await Location.getCurrentPositionAsync({})
+    const region = {
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+      ...deltas,
+    }
+    await this.setState({ region })
+  }
 
-		return (
-          <FlatList
-            data={places}
-            location={region}
-            keyExtractor={this._keyExtractor}
-            renderItem={this._renderItem}
-          />
-		);
-	}
+  getPlacesAsync = async () => {
+    const places = this.props.screenProps.data.features.map(feature => ({
+      longitude: feature.geometry.coordinates[0],
+      latitude: feature.geometry.coordinates[1],
+      title: feature.properties.bezeichnung,
+      type: feature.properties.typ,
+    }))
+    await this.setState({ places })
+  }
+
+  keyExtractor = (item, index) => index.toString()
+
+  renderItem = ({ item, index }) => (
+    <ListItem item={item} index={index} onPressItem={this.onPressItem} />
+  )
+
+
+  render() {
+    const { region, places } = this.state
+
+    return (
+      <FlatList
+        data={places}
+        location={region}
+        keyExtractor={this.keyExtractor}
+        renderItem={this.renderItem}
+      />
+    )
+  }
 }
 
-const styles = StyleSheet.create({
-    thumb: {
-      width: 80,
-      height: 80,
-      marginRight: 10
-    },
-    textContainer: {
-      flex: 1
-    },
-    separator: {
-      height: 1,
-      backgroundColor: '#dddddd'
-    },
-    title: {
-      fontSize: 25,
-      fontWeight: 'bold',
-      color: '#48BBEC'
-    },
-    type: {
-      fontSize: 20,
-      color: '#656565'
-    },
-    rowContainer: {
-      flexDirection: 'row',
-      padding: 10
-    },
-  });
 
-export default ListScreen;
+export default ListScreen
