@@ -10,7 +10,11 @@ const getData = (startLoc, destinationLoc) => {
   const mode = 'bicycling'
   return api
     .get(
-      `/maps/api/directions/json?origin=${startLoc}&destination=${destinationLoc}&key=${APIKEY}&mode=${mode}`,
+      `/maps/api/directions` +
+        `/json?origin=${startLoc}` +
+        `&destination=${destinationLoc}` +
+        `&key=${APIKEY}` +
+        `&mode=${mode}`,
     )
     .then(res => Polyline.decode(res.data.routes[0].overview_polyline.points))
     .then(points => {
