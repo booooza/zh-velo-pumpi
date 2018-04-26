@@ -17,7 +17,7 @@ const getData = data =>
         type: feature.properties.typ,
       })),
     )
-    .catch(error => console.error(error))
+// .catch(error => console.error(error))
 
 export default {
   getData,

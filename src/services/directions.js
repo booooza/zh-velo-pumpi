@@ -14,7 +14,7 @@ const getData = (startLoc, destinationLoc) => {
     )
     .then(res => Polyline.decode(res.data.routes[0].overview_polyline.points))
     .then(points => {
-      const coords = points.map((point, index) => ({
+      const coords = points.map(point => ({
         latitude: point[0],
         longitude: point[1],
       }))

@@ -1,20 +1,11 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  Dimensions,
-  Button,
-  ActivityIndicator,
-} from 'react-native'
+import { View, SafeAreaView, StyleSheet, Dimensions, Button, ActivityIndicator } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { Location, Permissions, MapView } from 'expo'
 import MapViewDirections from 'react-native-maps-directions'
 
-const Marker = MapView.Marker
+const { Marker } = MapView
 const { width, height } = Dimensions.get('window')
-const ASPECT_RATIO = width / height
 const GOOGLE_MAPS_APIKEY = 'AIzaSyCsBCVuRulDZe4f3tlGfpVuc_fM0m3iquA'
 
 const deltas = {
@@ -23,11 +14,6 @@ const deltas = {
 }
 
 class DirectionScreen extends Component {
-  state = {
-    region: null,
-    errorMessage: null,
-  }
-
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state
     return {
@@ -36,6 +22,11 @@ class DirectionScreen extends Component {
         <Button onPress={() => navigation.dispatch(NavigationActions.back())} title="Zurück" />
       ),
     }
+  }
+
+  state = {
+    region: null,
+    errorMessage: null,
   }
 
   componentWillMount() {
@@ -60,7 +51,7 @@ class DirectionScreen extends Component {
   }
 
   render() {
-    const params = this.props.navigation.state.params
+    const { params } = this.props.navigation.state
 
     const { region } = this.state
     if (!region) {
@@ -90,7 +81,7 @@ class DirectionScreen extends Component {
             apikey={GOOGLE_MAPS_APIKEY}
             strokeWidth={3}
             strokeColor="hotpink"
-            onStart={params => {
+            onStart={() => {
               console.log(`Started routing from "${params.origin}" to "${params.destination}"`)
             }}
             onReady={result => {
@@ -103,8 +94,8 @@ class DirectionScreen extends Component {
                 },
               })
             }}
-            onError={errorMessage => {
-              // console.log('GOT AN ERROR');
+            onError={() => {
+              console.log('GOT AN ERROR')
             }}
           />
           <Marker

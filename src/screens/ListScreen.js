@@ -1,14 +1,5 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  TouchableHighlight,
-  FlatList,
-  Image,
-  ActivityIndicator,
-} from 'react-native'
+import { View, Text, StyleSheet, TouchableHighlight, FlatList, Image } from 'react-native'
 import { Location, Permissions } from 'expo'
 
 const deltas = {
@@ -22,7 +13,7 @@ class ListItem extends React.PureComponent {
   }
 
   render() {
-    const item = this.props.item
+    const { item } = this.props
     return (
       <TouchableHighlight onPress={this._onPress} underlayColor="#dddddd">
         <View>
