@@ -2,23 +2,27 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableHighlight, FlatList, Image } from 'react-native'
 import { Location, Permissions } from 'expo'
 
+// import ListItem from '../components/ListItem'
+
 const deltas = {
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 }
 
+const thumb = require('../../assets/baloon.png')
+
 class ListItem extends React.PureComponent {
-  _onPress = () => {
+  onPress = () => {
     this.props.onPressItem(this.props.index)
   }
 
   render() {
     const { item } = this.props
     return (
-      <TouchableHighlight onPress={this._onPress} underlayColor="#dddddd">
+      <TouchableHighlight onPress={this.onPress} underlayColor="#dddddd">
         <View>
           <View style={styles.rowContainer}>
-            <Image style={styles.thumb} source={require('../../assets/baloon.png')} />
+            <Image style={styles.thumb} source={thumb} />
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.title}</Text>
               <Text style={styles.type}>{item.type}</Text>
@@ -32,6 +36,11 @@ class ListItem extends React.PureComponent {
 }
 
 class ListScreen extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Liste',
+    title: 'Liste',
+  }
+
   constructor(props) {
     super(props)
 
@@ -43,14 +52,17 @@ class ListScreen extends Component {
     }
   }
 
-  static navigationOptions = {
-    tabBarLabel: 'Liste',
-    title: 'Liste',
-  }
-
   componentWillMount() {
     this.getLocationAsync()
     this.getPlacesAsync()
+  }
+
+  onPressItem = (index) => {
+    console.log(`Pressed row: ${index}`)
+    this.props.navigation.navigate('Directions', {
+      data: this.state.places[index],
+      title: this.state.places[index].title,
+    })
   }
 
   getLocationAsync = async () => {
@@ -78,19 +90,12 @@ class ListScreen extends Component {
     await this.setState({ places })
   }
 
-  _keyExtractor = (item, index) => index.toString()
+  keyExtractor = (item, index) => index.toString()
 
-  _renderItem = ({ item, index }) => (
-    <ListItem item={item} index={index} onPressItem={this._onPressItem} />
+  renderItem = ({ item, index }) => (
+    <ListItem item={item} index={index} onPressItem={this.onPressItem} />
   )
 
-  _onPressItem = (index) => {
-    console.log(`Pressed row: ${index}`)
-    this.props.navigation.navigate('Directions', {
-      data: this.state.places[index],
-      title: this.state.places[index].title,
-    })
-  }
 
   render() {
     const { region, places } = this.state
@@ -99,8 +104,8 @@ class ListScreen extends Component {
       <FlatList
         data={places}
         location={region}
-        keyExtractor={this._keyExtractor}
-        renderItem={this._renderItem}
+        keyExtractor={this.keyExtractor}
+        renderItem={this.renderItem}
       />
     )
   }
