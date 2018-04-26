@@ -56,9 +56,7 @@ class ListScreen extends Component {
   getLocationAsync = async () => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      })
+      console.log('No access to location')
     }
 
     const location = await Location.getCurrentPositionAsync({})

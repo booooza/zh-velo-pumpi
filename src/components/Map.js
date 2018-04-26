@@ -6,25 +6,28 @@ const { Marker } = MapView
 
 export default class Map extends Component {
   renderMarkers() {
-    _onCalloutPress = (data) => {
-      console.log(`Pressed callout: ${data.title} ${data.coordinate.latitude} ${data.coordinate.latitude}`)
+    const onCalloutPress = (data) => {
+      console.log(`Pressed callout: 
+        ${data.title} 
+        ${data.coordinate.latitude} 
+        ${data.coordinate.latitude}`)
       this.props.navigation.navigate('Directions', {
         data: data.coordinate,
         title: data.title,
       })
     }
 
-    return this.props.places.map((place, i) => (
+    return this.props.places.map(place => (
       <Marker
-        key={i}
+        key={place.title}
         title={place.title}
         description={place.type}
         coordinate={{
           latitude: place.latitude,
           longitude: place.longitude,
         }}
-        onCalloutPress={data =>
-          _onCalloutPress({
+        onCalloutPress={() =>
+          onCalloutPress({
             title: place.title,
             coordinate: {
               latitude: place.latitude,
@@ -40,7 +43,12 @@ export default class Map extends Component {
   render() {
     const { region } = this.props
     return (
-      <MapView style={styles.container} region={region} showsUserLocation showsMyLocationButton>
+      <MapView
+        style={styles.container}
+        region={region}
+        showsUserLocation
+        showsMyLocationButton
+      >
         {this.renderMarkers()}
       </MapView>
     )

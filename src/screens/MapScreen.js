@@ -27,7 +27,7 @@ class MapScreen extends Component {
   getLocationAsync = async () => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
-      console.log('Kein Zugriff auf Standort')
+      console.log('No access to location')
     }
 
     const location = await Location.getCurrentPositionAsync({})

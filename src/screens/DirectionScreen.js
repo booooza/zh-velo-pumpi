@@ -19,14 +19,16 @@ class DirectionScreen extends Component {
     return {
       title: params ? params.title : 'Navigation',
       headerRight: (
-        <Button onPress={() => navigation.dispatch(NavigationActions.back())} title="Zurück" />
+        <Button
+          onPress={() => navigation.dispatch(NavigationActions.back())}
+          title="Zurück"
+        />
       ),
     }
   }
 
   state = {
     region: null,
-    errorMessage: null,
   }
 
   componentWillMount() {
@@ -36,9 +38,7 @@ class DirectionScreen extends Component {
   getLocationAsync = async () => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      })
+      console.log('No access to location')
     }
 
     const location = await Location.getCurrentPositionAsync({})
@@ -67,7 +67,10 @@ class DirectionScreen extends Component {
         <MapView
           initialRegion={region}
           style={StyleSheet.absoluteFill}
-          ref={c => (this.mapView = c)}
+          // ref={c => (this.mapView = c)}
+          ref={(c) => {
+            this.mapView = c
+          }}
           showsUserLocation
           showsMyLocationButton
         >
@@ -81,9 +84,6 @@ class DirectionScreen extends Component {
             apikey={GOOGLE_MAPS_APIKEY}
             strokeWidth={3}
             strokeColor="hotpink"
-            onStart={() => {
-              console.log(`Started routing from "${params.origin}" to "${params.destination}"`)
-            }}
             onReady={(result) => {
               this.mapView.fitToCoordinates(result.coordinates, {
                 edgePadding: {
