@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, SafeAreaView, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import { Location, Permissions } from 'expo'
 
 import Map from '../components/Map'
@@ -10,14 +10,13 @@ const deltas = {
 }
 
 class MapScreen extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Karte',
+  }
+
   state = {
     region: null,
     places: [],
-    errorMessage: null,
-  }
-
-  static navigationOptions = {
-    tabBarLabel: 'Karte',
   }
 
   componentWillMount() {
@@ -28,9 +27,7 @@ class MapScreen extends Component {
   getLocationAsync = async () => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      })
+      console.log('Kein Zugriff auf Standort')
     }
 
     const location = await Location.getCurrentPositionAsync({})
