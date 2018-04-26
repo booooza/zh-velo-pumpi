@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import { FlatList } from 'react-native'
-import { Location, Permissions } from 'expo'
-
 import ListItem from '../components/ListItem'
-
-const deltas = {
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
-}
+import getLocationAsync from '../services/location'
 
 class ListScreen extends Component {
   static navigationOptions = {
@@ -25,7 +19,9 @@ class ListScreen extends Component {
   }
 
   componentWillMount() {
-    this.getLocationAsync()
+    getLocationAsync().then((region) => {
+      this.setState({ region })
+    })
     this.getPlacesAsync()
   }
 
@@ -35,21 +31,6 @@ class ListScreen extends Component {
       data: this.state.places[index],
       title: this.state.places[index].title,
     })
-  }
-
-  getLocationAsync = async () => {
-    const { status } = await Permissions.askAsync(Permissions.LOCATION)
-    if (status !== 'granted') {
-      console.log('No access to location')
-    }
-
-    const location = await Location.getCurrentPositionAsync({})
-    const region = {
-      latitude: location.coords.latitude,
-      longitude: location.coords.longitude,
-      ...deltas,
-    }
-    await this.setState({ region })
   }
 
   getPlacesAsync = async () => {
