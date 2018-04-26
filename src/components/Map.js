@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { MapView } from 'expo'
 
 const Marker = MapView.Marker
-
-const deltas = {
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
-}
 
 export default class Map extends Component {
   renderMarkers() {
