@@ -19,6 +19,9 @@ export default class ListItem extends PureComponent {
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.type}>{item.type}</Text>
               </View>
+              <View style={styles.distanceContainer}>
+                <Text>{item.distance}</Text>
+              </View>
             </View>
             <View style={styles.separator} />
           </View>
@@ -35,6 +38,9 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
+  },
+  distanceContainer: {
+    flex: 0.25,
   },
   separator: {
     height: 1,
