@@ -1,30 +1,31 @@
 import React from 'react'
-import { AppRegistry, StyleSheet, Text, View, SafeAreaView } from 'react-native'
+import { AppLoading } from 'expo'
+import { AppRegistry } from 'react-native'
 import { Root } from './src/config/router'
-import { Asset, AppLoading } from 'expo'
+
+const data = require('./assets/velopumpstation.json')
 
 class App extends React.Component {
   state = {
     isReady: true,
   }
 
+  async cacheResourcesAsync() {
+    // TODO
+    return this
+  }
+
   render() {
     if (!this.state.isReady) {
       return (
         <AppLoading
-          startAsync={this._cacheResourcesAsync}
+          startAsync={this.cacheResourcesAsync}
           onFinish={() => this.setState({ isReady: true })}
-          onError={console.warn}
         />
       )
     }
 
-    const data = require('./assets/velopumpstation.json')
     return <Root screenProps={{ data }} />
-  }
-
-  async _cacheResourcesAsync() {
-    // TODO
   }
 }
 
