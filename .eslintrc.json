@@ -1,9 +1,12 @@
 {
     "parser": "babel-eslint",
-    "extends": "airbnb",
+    "extends": [
+      "airbnb",
+      "prettier",
+      "prettier/react"
+    ],
     "plugins": [
       "react",
-      "flowtype",
       "jsx-a11y",
       "import"
     ],
@@ -24,7 +27,7 @@
           "peerDependencies": false
         }
       ],
-      "semi": ["error", "never"]
+      "max-len": ["error", {"code": 80, "ignoreUrls": true}]
     },
     "env": {
       "jest": true

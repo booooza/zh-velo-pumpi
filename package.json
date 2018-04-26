@@ -6,8 +6,7 @@
     "axios": "^0.18.0",
     "expo": "^26.0.0",
     "react": "16.3.0-alpha.1",
-    "react-native":
-      "https://github.com/expo/react-native/archive/sdk-26.0.0.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-26.0.0.tar.gz",
     "react-native-elements": "^0.19.1",
     "react-native-maps-directions": "^1.6.0",
     "react-navigation": "^1.5.11"
@@ -16,6 +15,7 @@
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-flowtype": "^2.46.3",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
@@ -27,12 +27,18 @@
   },
   "scripts": {
     "lint": "eslint --ignore-path ./.gitignore .",
-    "pretty":
-      "prettier --semi false --print-width 100 --single-quote --trailing-comma all --write \"*.js\" \"src/**/*.js\"",
-    "precommit": "lint-staged"
+    "pretty": "prettier --semi false --print-width 100 --single-quote --trailing-comma all --write \"*.js\" \"src/**/*.js\"",
+    "precommit": "lint-staged",
+    "lint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
   },
   "lint-staged": {
-    "*.js": ["yarn pretty", "git add"],
-    "src/**/*.js": ["yarn pretty", "git add"]
+    "*.js": [
+      "yarn pretty",
+      "git add"
+    ],
+    "src/**/*.js": [
+      "yarn pretty",
+      "git add"
+    ]
   }
 }
