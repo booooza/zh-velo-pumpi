@@ -12,16 +12,12 @@ const getData = (startLoc, destinationLoc) => {
     .get(
       `/maps/api/directions/json?origin=${startLoc}&destination=${destinationLoc}&key=${APIKEY}&mode=${mode}`,
     )
-    .then(res => {
-      return Polyline.decode(res.data.routes[0].overview_polyline.points)
-    })
+    .then(res => Polyline.decode(res.data.routes[0].overview_polyline.points))
     .then(points => {
-      let coords = points.map((point, index) => {
-        return {
-          latitude: point[0],
-          longitude: point[1],
-        }
-      })
+      const coords = points.map((point, index) => ({
+        latitude: point[0],
+        longitude: point[1],
+      }))
       return coords
     })
 

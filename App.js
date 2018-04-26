@@ -19,13 +19,12 @@ class App extends React.Component {
       )
     }
 
-    let data = require('./assets/velopumpstation.json')
-    return <Root screenProps={{ data: data }} />
+    const data = require('./assets/velopumpstation.json')
+    return <Root screenProps={{ data }} />
   }
 
   async _cacheResourcesAsync() {
     // TODO
-    return
   }
 }
 

@@ -26,14 +26,14 @@ class MapScreen extends Component {
   }
 
   getLocationAsync = async () => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION)
+    const { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
       this.setState({
         errorMessage: 'Permission to access location was denied',
       })
     }
 
-    let location = await Location.getCurrentPositionAsync({})
+    const location = await Location.getCurrentPositionAsync({})
     const region = {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
@@ -43,14 +43,12 @@ class MapScreen extends Component {
   }
 
   getPlacesAsync = async () => {
-    const places = this.props.screenProps.data.features.map(feature => {
-      return {
-        longitude: feature.geometry.coordinates[0],
-        latitude: feature.geometry.coordinates[1],
-        title: feature.properties.bezeichnung,
-        type: feature.properties.typ,
-      }
-    })
+    const places = this.props.screenProps.data.features.map(feature => ({
+      longitude: feature.geometry.coordinates[0],
+      latitude: feature.geometry.coordinates[1],
+      title: feature.properties.bezeichnung,
+      type: feature.properties.typ,
+    }))
     await this.setState({ places })
   }
 

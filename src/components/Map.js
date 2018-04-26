@@ -13,12 +13,7 @@ export default class Map extends Component {
   renderMarkers() {
     _onCalloutPress = data => {
       console.log(
-        'Pressed callout: ' +
-          data.title +
-          ' ' +
-          data.coordinate.latitude +
-          ' ' +
-          data.coordinate.latitude,
+        `Pressed callout: ${data.title} ${data.coordinate.latitude} ${data.coordinate.latitude}`,
       )
       this.props.navigation.navigate('Directions', {
         data: data.coordinate,

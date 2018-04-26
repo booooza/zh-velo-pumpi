@@ -43,14 +43,14 @@ class DirectionScreen extends Component {
   }
 
   getLocationAsync = async () => {
-    let { status } = await Permissions.askAsync(Permissions.LOCATION)
+    const { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
       this.setState({
         errorMessage: 'Permission to access location was denied',
       })
     }
 
-    let location = await Location.getCurrentPositionAsync({})
+    const location = await Location.getCurrentPositionAsync({})
     const region = {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
