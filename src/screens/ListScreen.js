@@ -86,7 +86,7 @@ class ListScreen extends Component {
     <ListItem item={item} index={index} onPressItem={this._onPressItem} />
   )
 
-  _onPressItem = index => {
+  _onPressItem = (index) => {
     console.log(`Pressed row: ${index}`)
     this.props.navigation.navigate('Directions', {
       data: this.state.places[index],

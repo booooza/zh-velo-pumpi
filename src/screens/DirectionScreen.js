@@ -84,7 +84,7 @@ class DirectionScreen extends Component {
             onStart={() => {
               console.log(`Started routing from "${params.origin}" to "${params.destination}"`)
             }}
-            onReady={result => {
+            onReady={(result) => {
               this.mapView.fitToCoordinates(result.coordinates, {
                 edgePadding: {
                   right: width / 20,

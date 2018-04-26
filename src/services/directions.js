@@ -9,15 +9,13 @@ const getData = (startLoc, destinationLoc) => {
   const APIKEY = process.env.GOOGLE_DIRECTIONS_APIKEY
   const mode = 'bicycling'
   return api
-    .get(
-      `/maps/api/directions` +
+    .get('/maps/api/directions' +
         `/json?origin=${startLoc}` +
         `&destination=${destinationLoc}` +
         `&key=${APIKEY}` +
-        `&mode=${mode}`,
-    )
+        `&mode=${mode}`)
     .then(res => Polyline.decode(res.data.routes[0].overview_polyline.points))
-    .then(points => {
+    .then((points) => {
       const coords = points.map(point => ({
         latitude: point[0],
         longitude: point[1],
