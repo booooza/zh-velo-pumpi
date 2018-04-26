@@ -1,5 +1,4 @@
-import React from 'react'
-import { TabNavigator, StackNavigator, ActivityIndicator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 
 import MapScreen from '../screens/MapScreen'
 import ListScreen from '../screens/ListScreen'
