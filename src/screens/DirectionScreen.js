@@ -82,8 +82,8 @@ class DirectionScreen extends Component {
             }}
           />
           <Marker
-            title="test"
-            description="test"
+            title={this.props.navigation.state.params.title}
+            description={this.props.navigation.state.params.type}
             coordinate={{
               longitude: params.data.longitude,
               latitude: params.data.latitude,

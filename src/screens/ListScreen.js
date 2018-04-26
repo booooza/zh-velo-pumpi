@@ -30,6 +30,7 @@ class ListScreen extends Component {
     this.props.navigation.navigate('Directions', {
       data: this.state.places[index],
       title: this.state.places[index].title,
+      type: this.state.places[index].type,
     })
   }
 
