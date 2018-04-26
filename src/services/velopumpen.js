@@ -4,10 +4,15 @@ const api = axios.create({
   baseURL: 'https://data.stadt-zuerich.ch',
 })
 
-const getData = data =>
+const getData = () =>
   api
     .get(
-      '/dataset/f25cf7cb-e289-4197-a76c-37eee69d8b90/resource/4cea6136-d927-43b5-b1ae-4fce8a52058f/download/velopumpstation.json',
+      '/dataset' +
+        '/f25cf7cb-e289-4197-a76c-37eee69d8b90' +
+        '/resource' +
+        '/4cea6136-d927-43b5-b1ae-4fce8a52058f' +
+        '/download' +
+        '/velopumpstation.json',
     )
     .then(res =>
       res.data.features.map(feature => ({
