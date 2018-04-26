@@ -90,7 +90,7 @@ class DirectionScreen extends Component {
                   right: width / 20,
                   bottom: height / 20,
                   left: width / 20,
-                  top: height / 20,
+                  top: 200,
                 },
               })
             }}
