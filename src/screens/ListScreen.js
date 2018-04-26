@@ -1,38 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableHighlight, FlatList, Image } from 'react-native'
+import { FlatList } from 'react-native'
 import { Location, Permissions } from 'expo'
 
-// import ListItem from '../components/ListItem'
+import ListItem from '../components/ListItem'
 
 const deltas = {
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
-}
-
-const thumb = require('../../assets/baloon.png')
-
-class ListItem extends React.PureComponent {
-  onPress = () => {
-    this.props.onPressItem(this.props.index)
-  }
-
-  render() {
-    const { item } = this.props
-    return (
-      <TouchableHighlight onPress={this.onPress} underlayColor="#dddddd">
-        <View>
-          <View style={styles.rowContainer}>
-            <Image style={styles.thumb} source={thumb} />
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.type}>{item.type}</Text>
-            </View>
-          </View>
-          <View style={styles.separator} />
-        </View>
-      </TouchableHighlight>
-    )
-  }
 }
 
 class ListScreen extends Component {
@@ -47,8 +21,6 @@ class ListScreen extends Component {
     this.state = {
       region: null,
       places: [],
-      errorMessage: null,
-      isLoading: true,
     }
   }
 
@@ -111,32 +83,5 @@ class ListScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  thumb: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
-  },
-  textContainer: {
-    flex: 1,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#dddddd',
-  },
-  title: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#48BBEC',
-  },
-  type: {
-    fontSize: 20,
-    color: '#656565',
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    padding: 10,
-  },
-})
 
 export default ListScreen
