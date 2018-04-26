@@ -15,30 +15,12 @@
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-flowtype": "^2.46.3",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "eslint-plugin-react-native": "^3.2.1",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.0.5",
-    "prettier": "^1.12.1"
+    "eslint-plugin-react-native": "^3.2.1"
   },
   "scripts": {
-    "lint": "eslint --ignore-path ./.gitignore .",
-    "pretty": "prettier --semi false --print-width 100 --single-quote --trailing-comma all --write \"*.js\" \"src/**/*.js\"",
-    "precommit": "lint-staged",
-    "lint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
-  },
-  "lint-staged": {
-    "*.js": [
-      "yarn pretty",
-      "git add"
-    ],
-    "src/**/*.js": [
-      "yarn pretty",
-      "git add"
-    ]
+    "lint": "eslint --ignore-path ./.gitignore ."
   }
 }

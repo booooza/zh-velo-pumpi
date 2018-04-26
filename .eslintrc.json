@@ -1,9 +1,7 @@
 {
     "parser": "babel-eslint",
     "extends": [
-      "airbnb",
-      "prettier",
-      "prettier/react"
+      "airbnb"
     ],
     "plugins": [
       "react",
@@ -27,7 +25,8 @@
           "peerDependencies": false
         }
       ],
-      "max-len": ["error", {"code": 80, "ignoreUrls": true}]
+      "max-len": [2, {"code": 80, "ignorePattern": "^import\\W.*", "ignoreUrls": true}],
+      "no-use-before-define": ["error", { "variables": false }]
     },
     "env": {
       "jest": true
