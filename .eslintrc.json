@@ -28,7 +28,8 @@
       "max-len": [2, {"code": 80, "ignorePattern": "^import\\W.*", "ignoreUrls": true}],
       "no-use-before-define": ["error", { "variables": false }],
       "semi": ["error", "never"],
-      "beforeStatementContinuationChars": "always"
+      "beforeStatementContinuationChars": "always",
+      "react/prop-types": [0]
     },
     "env": {
       "jest": true
