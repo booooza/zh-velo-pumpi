@@ -19,7 +19,7 @@ class ListScreen extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     getLocationAsync()
       .then((region) => {
         this.setState({ region })
@@ -27,7 +27,12 @@ class ListScreen extends Component {
       .then(() => {
         this.getPlacesAsync()
           .then((places) => {
-            this.setState({ places })
+            this.setState({ places }, () => {
+              this.getDistanceAsync(this.state.places)
+                .then((placesWithDistance) => {
+                  this.setState({ places: placesWithDistance })
+                })
+            })
           })
       })
       .catch((err) => {
@@ -45,34 +50,24 @@ class ListScreen extends Component {
   }
 
   getPlacesAsync = async () => {
-    const places = this.props.screenProps.data.features.map((feature) => {
-      const origin = `${this.state.region.latitude},${this.state.region.longitude}`
-      const destination = `${feature.geometry.coordinates[1]},${feature.geometry.coordinates[1]}`
-      GoogleDirectionsAPI(origin, destination)
-        .then((res) => {
-          console.log(res)
-        })
-
-      return {
-        longitude: feature.geometry.coordinates[0],
-        latitude: feature.geometry.coordinates[1],
-        title: feature.properties.bezeichnung,
-        type: feature.properties.typ,
-      }
-    })
+    const places = this.props.screenProps.data.features.map(feature => ({
+      longitude: feature.geometry.coordinates[0],
+      latitude: feature.geometry.coordinates[1],
+      title: feature.properties.bezeichnung,
+      type: feature.properties.typ,
+    }))
     return places
   }
 
-  // getDistanceAsync = async () => {
-  //   const placesWithDistance = this.state.places.map((place) => {
-  //     const origin = `${this.state.region.longitude},${this.state.region.latitude}`
-  //     const destination = `${place.longitude},${place.latitude}`
-  //     const result = GoogleDirectionsAPI(origin, destination)
+  getDistanceAsync(places) {
+    return Promise.all(places.map((place) => {
+      const origin = `${this.state.region.latitude},${this.state.region.longitude}`
+      const destination = `${place.latitude},${place.longitude}`
 
-  //     return { ...place, distance: result }
-  //   })
-  //   return placesWithDistance
-  // }
+      return GoogleDirectionsAPI(origin, destination)
+        .then(distance => ({ ...place, distance }))
+    }))
+  }
 
   keyExtractor = (item, index) => index.toString()
 
@@ -83,7 +78,6 @@ class ListScreen extends Component {
       onPressItem={this.onPressItem}
     />
   )
-
 
   render() {
     const { region, places } = this.state
@@ -97,6 +91,5 @@ class ListScreen extends Component {
     )
   }
 }
-
 
 export default ListScreen

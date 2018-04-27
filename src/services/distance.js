@@ -15,4 +15,5 @@ export default async function getDistanceAsync(origin, destination) {
             `&key=${APIKEY}` +
             `&mode=${mode}`)
     .then(res => res.data.routes[0].legs[0].distance.text)
+    .catch(err => console.log(err))
 }
