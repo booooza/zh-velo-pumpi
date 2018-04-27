@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 import { FlatList } from 'react-native'
-import { Location, Permissions } from 'expo'
-
 import ListItem from '../components/ListItem'
-
-const deltas = {
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
-}
+import getLocationAsync from '../services/location'
+import GoogleDirectionsAPI from '../services/distance'
 
 class ListScreen extends Component {
   static navigationOptions = {
@@ -20,13 +15,29 @@ class ListScreen extends Component {
 
     this.state = {
       region: null,
-      places: [],
+      places: null,
     }
   }
 
-  componentWillMount() {
-    this.getLocationAsync()
-    this.getPlacesAsync()
+  componentDidMount() {
+    getLocationAsync()
+      .then((region) => {
+        this.setState({ region })
+      })
+      .then(() => {
+        this.getPlacesAsync()
+          .then((places) => {
+            this.setState({ places }, () => {
+              this.getDistanceAsync(this.state.places)
+                .then((placesWithDistance) => {
+                  this.setState({ places: placesWithDistance })
+                })
+            })
+          })
+      })
+      .catch((err) => {
+        console.log(`error: ${err}`)
+      })
   }
 
   onPressItem = (index) => {
@@ -34,22 +45,8 @@ class ListScreen extends Component {
     this.props.navigation.navigate('Directions', {
       data: this.state.places[index],
       title: this.state.places[index].title,
+      type: this.state.places[index].type,
     })
-  }
-
-  getLocationAsync = async () => {
-    const { status } = await Permissions.askAsync(Permissions.LOCATION)
-    if (status !== 'granted') {
-      console.log('No access to location')
-    }
-
-    const location = await Location.getCurrentPositionAsync({})
-    const region = {
-      latitude: location.coords.latitude,
-      longitude: location.coords.longitude,
-      ...deltas,
-    }
-    await this.setState({ region })
   }
 
   getPlacesAsync = async () => {
@@ -59,19 +56,31 @@ class ListScreen extends Component {
       title: feature.properties.bezeichnung,
       type: feature.properties.typ,
     }))
-    await this.setState({ places })
+    return places
+  }
+
+  getDistanceAsync(places) {
+    return Promise.all(places.map((place) => {
+      const origin = `${this.state.region.latitude},${this.state.region.longitude}`
+      const destination = `${place.latitude},${place.longitude}`
+
+      return GoogleDirectionsAPI(origin, destination)
+        .then(distance => ({ ...place, distance }))
+    }))
   }
 
   keyExtractor = (item, index) => index.toString()
 
   renderItem = ({ item, index }) => (
-    <ListItem item={item} index={index} onPressItem={this.onPressItem} />
+    <ListItem
+      item={item}
+      index={index}
+      onPressItem={this.onPressItem}
+    />
   )
-
 
   render() {
     const { region, places } = this.state
-
     return (
       <FlatList
         data={places}
@@ -82,6 +91,5 @@ class ListScreen extends Component {
     )
   }
 }
-
 
 export default ListScreen

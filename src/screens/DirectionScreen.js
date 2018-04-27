@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
 import { View, SafeAreaView, StyleSheet, Dimensions, Button, ActivityIndicator } from 'react-native'
 import { NavigationActions } from 'react-navigation'
-import { Location, Permissions, MapView } from 'expo'
+import { MapView } from 'expo'
 import MapViewDirections from 'react-native-maps-directions'
+import getLocationAsync from '../services/location'
 
 const { Marker } = MapView
 const { width, height } = Dimensions.get('window')
 const GOOGLE_MAPS_APIKEY = 'AIzaSyCsBCVuRulDZe4f3tlGfpVuc_fM0m3iquA'
-
-const deltas = {
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
-}
 
 class DirectionScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -32,22 +28,9 @@ class DirectionScreen extends Component {
   }
 
   componentWillMount() {
-    this.getLocationAsync()
-  }
-
-  getLocationAsync = async () => {
-    const { status } = await Permissions.askAsync(Permissions.LOCATION)
-    if (status !== 'granted') {
-      console.log('No access to location')
-    }
-
-    const location = await Location.getCurrentPositionAsync({})
-    const region = {
-      latitude: location.coords.latitude,
-      longitude: location.coords.longitude,
-      ...deltas,
-    }
-    await this.setState({ region })
+    getLocationAsync().then((region) => {
+      this.setState({ region })
+    })
   }
 
   render() {
@@ -90,7 +73,7 @@ class DirectionScreen extends Component {
                   right: width / 20,
                   bottom: height / 20,
                   left: width / 20,
-                  top: height / 20,
+                  top: 200,
                 },
               })
             }}
@@ -99,8 +82,8 @@ class DirectionScreen extends Component {
             }}
           />
           <Marker
-            title="test"
-            description="test"
+            title={this.props.navigation.state.params.title}
+            description={this.props.navigation.state.params.type}
             coordinate={{
               longitude: params.data.longitude,
               latitude: params.data.latitude,

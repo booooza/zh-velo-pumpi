@@ -14,6 +14,7 @@ export default class Map extends Component {
       this.props.navigation.navigate('Directions', {
         data: data.coordinate,
         title: data.title,
+        type: data.type,
       })
     }
 
@@ -33,6 +34,7 @@ export default class Map extends Component {
               latitude: place.latitude,
               longitude: place.longitude,
             },
+            type: place.type,
           })
         }
         // image={require('../../assets/baloon.png')}
