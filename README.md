@@ -13,6 +13,7 @@ Basierend auf:
  - [React Native Maps Directions](https://github.com/bramus/react-native-maps-directions)
  - [Mapbox/polyline](https://github.com/mapbox/polyline)
  - [Swiss Open Data](https://opendata.swiss/de/dataset/velopumpstationen-in-der-stadt-zurich1)
+ - [Google Directions API](https://developers.google.com/maps/documentation/directions/)
  - "Bicycle Pump" Icon by [Nicolas Molès](https://thenounproject.com/nicolas.moles/) from the [Noun Project](https://thenounproject.com)
 
 ![Alt text](/app.png?raw=true "App Screenshot")
