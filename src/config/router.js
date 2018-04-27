@@ -6,11 +6,11 @@ import DirectionScreen from '../screens/DirectionScreen'
 
 const TabNav = TabNavigator(
   {
-    ListScreen: {
-      screen: ListScreen,
-    },
     MapScreen: {
       screen: MapScreen,
+    },
+    ListScreen: {
+      screen: ListScreen,
     },
   },
   {
