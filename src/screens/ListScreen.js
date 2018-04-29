@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, View, ActivityIndicator } from 'react-native'
 import ListItem from '../components/ListItem'
 import getLocationAsync from '../services/location'
 import GoogleDirectionsAPI from '../services/distance'
@@ -27,12 +27,10 @@ class ListScreen extends Component {
       .then(() => {
         this.getPlacesAsync()
           .then((places) => {
-            this.setState({ places }, () => {
-              this.getDistanceAsync(this.state.places)
-                .then((placesWithDistance) => {
-                  this.setState({ places: placesWithDistance })
-                })
-            })
+            this.getDistanceAsync(places)
+              .then((placesWithDistance) => {
+                this.setState({ places: placesWithDistance })
+              })
           })
       })
       .catch((err) => {
@@ -65,7 +63,13 @@ class ListScreen extends Component {
       const destination = `${place.latitude},${place.longitude}`
 
       return GoogleDirectionsAPI(origin, destination)
-        .then(distance => ({ ...place, distance }))
+        .then(distance => ({
+          ...place,
+          distance: {
+            text: distance.text,
+            value: distance.value,
+          },
+        }))
     }))
   }
 
@@ -81,6 +85,15 @@ class ListScreen extends Component {
 
   render() {
     const { region, places } = this.state
+
+    if (!places) {
+      return (
+        <View>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )
+    }
+
     return (
       <FlatList
         data={places}

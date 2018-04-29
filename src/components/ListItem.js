@@ -20,7 +20,9 @@ export default class ListItem extends PureComponent {
                 <Text style={styles.type}>{item.type}</Text>
               </View>
               <View style={styles.distanceContainer}>
-                <Text style={styles.distance}>{item.distance}</Text>
+                <Text style={styles.distance}>
+                  {item.distance.text}
+                </Text>
               </View>
             </View>
             <View style={styles.separator} />
