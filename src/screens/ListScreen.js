@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, View, ActivityIndicator } from 'react-native'
+import { FlatList, View, ActivityIndicator, RefreshControl } from 'react-native'
 import ListItem from '../components/ListItem'
 import getLocationAsync from '../services/location'
 import GoogleDirectionsAPI from '../services/distance'
@@ -16,6 +16,7 @@ class ListScreen extends Component {
     this.state = {
       region: null,
       places: null,
+      refreshing: false,
     }
   }
 
@@ -46,6 +47,21 @@ class ListScreen extends Component {
       title: this.state.places[index].title,
       type: this.state.places[index].type,
     })
+  }
+
+  onRefresh = () => {
+    this.setState({ refreshing: true })
+    this.getPlacesAsync()
+      .then((places) => {
+        this.getDistanceAsync(places)
+          .then((placesWithDistance) => {
+            const sortedPlacesWithDistance = this.sortByDistance(placesWithDistance)
+            this.setState({ places: sortedPlacesWithDistance })
+          })
+      })
+      .then(() => {
+        this.setState({ refreshing: false })
+      })
   }
 
   getPlacesAsync = async () => {
@@ -104,6 +120,12 @@ class ListScreen extends Component {
         location={region}
         keyExtractor={this.keyExtractor}
         renderItem={this.renderItem}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.onRefresh}
+          />
+        }
       />
     )
   }
