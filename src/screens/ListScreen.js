@@ -29,7 +29,8 @@ class ListScreen extends Component {
           .then((places) => {
             this.getDistanceAsync(places)
               .then((placesWithDistance) => {
-                this.setState({ places: placesWithDistance })
+                const sortedPlacesWithDistance = this.sortByDistance(placesWithDistance)
+                this.setState({ places: sortedPlacesWithDistance })
               })
           })
       })
@@ -72,6 +73,9 @@ class ListScreen extends Component {
         }))
     }))
   }
+
+  sortByDistance = placesWithDistance => placesWithDistance.sort((obj1, obj2) =>
+    (obj1.distance.value - obj2.distance.value))
 
   keyExtractor = (item, index) => index.toString()
 
