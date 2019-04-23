@@ -1,51 +1,523 @@
-{"name":"Velopumpstation","type":"FeatureCollection"
-    ,"features":[
-    {"type":"Feature","geometry":{"type":"Point","coordinates":[8.52563569881196,47.3760493207135,0]},"properties":{"bezeichnung":"Helvetiaplatz","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54388787603914,47.3678913047179,0]},"properties":{"bezeichnung":"Utoquai (Pier 7)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.50748633579628,47.4073442547362,0]},"properties":{"bezeichnung":"ETH Hönggerberg, HCI-Gebäude - von der ETH bereitgestellt","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.48758039266114,47.3822552846176,0]},"properties":{"bezeichnung":"Quartier Zollfreilager, Rauti-/Bachwiesenstrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54552528463101,47.3860564136023,0]},"properties":{"bezeichnung":"Scheuchzer-/Ottikerstrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.52305161455442,47.3599054931341,0]},"properties":{"bezeichnung":"Sihlcity Nord","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54602862482176,47.4272450010865,0]},"properties":{"bezeichnung":"Birch-/Glatttalstrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.50348747999949,47.4225019927268,0]},"properties":{"bezeichnung":"Affoltern, Schulhaus Blumenfeld","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.52922480659324,47.3934288245123,0]},"properties":{"bezeichnung":"Röschibachplatz","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.57476202782831,47.3546416056767,0]},"properties":{"bezeichnung":"Balgrist, Tramhaltestelle","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.5057553780134,47.369218470608,0]},"properties":{"bezeichnung":"Heuried, Tramschlaufe","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.51581891601846,47.3798877826503,0]},"properties":{"bezeichnung":"Bullingerplatz","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54623526171305,47.4125576674538,0]},"properties":{"bezeichnung":"Unterführung Bahnhof Oerlikon Ost, Velostation","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.51248775614768,47.3904487143565,0]},"properties":{"bezeichnung":"ZHDK Toni-Areal - von der ZDHK bereitgestellt","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54334520485275,47.4116693034871,0]},"properties":{"bezeichnung":"Bahnhof Oerlikon, Velostation in der Quartierverbindung","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.57247462206581,47.4046390582456,0]},"properties":{"bezeichnung":"Schwamendingerplatz, Herzogenmühlestrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.59657931139763,47.3976992333393,0]},"properties":{"bezeichnung":"Bahnhof Stettbach (in der neuen Velostation)","typ":"Druckluft"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.53552014088183,47.3611628646764,0]},"properties":{"bezeichnung":"Mythenquai (Kiosk/Parkplatz Hafen Enge)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.53529822381029,47.3759190600671,0]},"properties":{"bezeichnung":"Gessnerallee (bei der Sigi-Feigel-Terasse)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.51895454009723,47.3918760761487,0]},"properties":{"bezeichnung":"Hardturmstrasse (Ampèresteg, Fischerweg)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.4880853471741,47.3915437658216,0]},"properties":{"bezeichnung":"Bahnhof Altstetten (Velostation)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.4968705956675,47.3663095566504,0]},"properties":{"bezeichnung":"Stadtspital Triemli (Haupteingang)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.50583827096375,47.3612043846724,0]},"properties":{"bezeichnung":"Schweighofstrasse 245, Borrweg","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.52669734088134,47.3721319439209,0]},"properties":{"bezeichnung":"Werdstrasse 75 (Amtsgebäude Werd)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.52895139481331,47.3817191652864,0]},"properties":{"bezeichnung":"Langstrasse 175, Röntgenstrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.51476347588376,47.374382508763,0]},"properties":{"bezeichnung":"Idaplatz","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.53118721358449,47.3708706944721,0]},"properties":{"bezeichnung":"Bahnhof Selnau (Sihlhölzlistrasse 3)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.51743697618552,47.3858466043601,0]},"properties":{"bezeichnung":"Bahnhof Hardbrücke (Primetower)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.52799503582902,47.3481918993549,0]},"properties":{"bezeichnung":"Jugendherberge (Mutschellenstrasse 114)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.49358768479876,47.3985307933218,0]},"properties":{"bezeichnung":"Meierwiesenstrasse 4, Fischerweg bei Europabrücke","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54189690443741,47.3942648283887,0]},"properties":{"bezeichnung":"Pauluskirche (Scheuchzerstrasse 181)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.5430480912705,47.3741863763941,0]},"properties":{"bezeichnung":"Limmatquai","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54162459190898,47.376043613419,0]},"properties":{"bezeichnung":"Beatenplatz","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54485663047969,47.3662870065332,0]},"properties":{"bezeichnung":"Utoquai, Bushaltestelle Bellevue","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.52696504725095,47.387708792302,0]},"properties":{"bezeichnung":"Otto-/ Limmatstrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.52404856624291,47.4135750740433,0]},"properties":{"bezeichnung":"Zelglistrasse, Binzmühlestrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.56315268058945,47.4109631361912,0]},"properties":{"bezeichnung":"Saatlen- / Wallisellenstrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.5374018846595,47.379466223087,0]},"properties":{"bezeichnung":"Hauptbahnhof (Nord, Ausgang Sihlquai)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.57181732818536,47.3817102869059,0]},"properties":{"bezeichnung":"Tramschlaufe Zoo","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.55140917509247,47.3639108200295,0]},"properties":{"bezeichnung":"Kreuz-/Mühlebachstrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.53574403676952,47.3856660474379,0]},"properties":{"bezeichnung":"Lux-Guyer-Weg (Höhe Oberer Letten)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54802048317652,47.3663213070362,0]},"properties":{"bezeichnung":"Stadelhoferplatz","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.55599371312217,47.369386092169,0]},"properties":{"bezeichnung":"GZ Hottingen","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.5736999530396,47.3988810465423,0]},"properties":{"bezeichnung":"Ziegelhütten","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.52170126811998,47.3686258154437,0]},"properties":{"bezeichnung":"Gotthelf- / Zurlindenstrasse","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.53062527551571,47.3647855488441,0]},"properties":{"bezeichnung":"Bahnhof Enge (gegenüber Bederstrasse 3)","typ":"Handpumpe"}}
-    ,{"type":"Feature","geometry":{"type":"Point","coordinates":[8.54829734495451,47.3771859727875,0]},"properties":{"bezeichnung":"ETH Hauptgebäude, Rämistrasse","typ":"Handpumpe"}}
-    ]}
-    
+{
+  "name": "Velopumpstation",
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.52563569881196, 47.3760493207135, 0]
+      },
+      "properties": {
+        "bezeichnung": "Helvetiaplatz",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54388787603914, 47.3678913047179, 0]
+      },
+      "properties": {
+        "bezeichnung": "Utoquai (Pier 7)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.50748633579628, 47.4073442547362, 0]
+      },
+      "properties": {
+        "bezeichnung": "ETH Hönggerberg, HCI-Gebäude - von der ETH bereitgestellt",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.48758039266114, 47.3822552846176, 0]
+      },
+      "properties": {
+        "bezeichnung": "Quartier Zollfreilager, Rauti-/Bachwiesenstrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54552528463101, 47.3860564136023, 0]
+      },
+      "properties": {
+        "bezeichnung": "Scheuchzer-/Ottikerstrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.52305161455442, 47.3599054931341, 0]
+      },
+      "properties": {
+        "bezeichnung": "Sihlcity Nord",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54602862482176, 47.4272450010865, 0]
+      },
+      "properties": {
+        "bezeichnung": "Birch-/Glatttalstrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.53135445151472, 47.3651948524245, 0]
+      },
+      "properties": {
+        "bezeichnung": "Bahnhof Enge",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.50348747999949, 47.4225019927268, 0]
+      },
+      "properties": {
+        "bezeichnung": "Affoltern, Schulhaus Blumenfeld",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.52922480659324, 47.3934288245123, 0]
+      },
+      "properties": {
+        "bezeichnung": "Röschibachplatz",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.57476202782831, 47.3546416056767, 0]
+      },
+      "properties": {
+        "bezeichnung": "Balgrist, Tramhaltestelle",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.5057553780134, 47.369218470608, 0]
+      },
+      "properties": {
+        "bezeichnung": "Heuried, Tramschlaufe",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.51581891601846, 47.3798877826503, 0]
+      },
+      "properties": {
+        "bezeichnung": "Bullingerplatz",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54623526171305, 47.4125576674538, 0]
+      },
+      "properties": {
+        "bezeichnung": "Unterführung Bahnhof Oerlikon Ost, Velostation",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.51248775614768, 47.3904487143565, 0]
+      },
+      "properties": {
+        "bezeichnung": "ZHDK Toni-Areal - von der ZDHK bereitgestellt",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54334520485275, 47.4116693034871, 0]
+      },
+      "properties": {
+        "bezeichnung": "Bahnhof Oerlikon, Velostation in der Quartierverbindung",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.57247462206581, 47.4046390582456, 0]
+      },
+      "properties": {
+        "bezeichnung": "Schwamendingerplatz, Herzogenmühlestrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.59657931139763, 47.3976992333393, 0]
+      },
+      "properties": {
+        "bezeichnung": "Bahnhof Stettbach (in der neuen Velostation)",
+        "typ": "Druckluft"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.53552014088183, 47.3611628646764, 0]
+      },
+      "properties": {
+        "bezeichnung": "Mythenquai (Kiosk/Parkplatz Hafen Enge)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.53529822381029, 47.3759190600671, 0]
+      },
+      "properties": {
+        "bezeichnung": "Gessnerallee (bei der Sigi-Feigel-Terasse)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.51895454009723, 47.3918760761487, 0]
+      },
+      "properties": {
+        "bezeichnung": "Hardturmstrasse (Ampèresteg, Fischerweg)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.4880853471741, 47.3915437658216, 0]
+      },
+      "properties": {
+        "bezeichnung": "Bahnhof Altstetten (Velostation)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.4968705956675, 47.3663095566504, 0]
+      },
+      "properties": {
+        "bezeichnung": "Stadtspital Triemli (Haupteingang)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.50583827096375, 47.3612043846724, 0]
+      },
+      "properties": {
+        "bezeichnung": "Schweighofstrasse 245, Borrweg",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.52669734088134, 47.3721319439209, 0]
+      },
+      "properties": {
+        "bezeichnung": "Werdstrasse 75 (Amtsgebäude Werd)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.52895139481331, 47.3817191652864, 0]
+      },
+      "properties": {
+        "bezeichnung": "Langstrasse 175, Röntgenstrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.51476347588376, 47.374382508763, 0]
+      },
+      "properties": {
+        "bezeichnung": "Idaplatz",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.53118721358449, 47.3708706944721, 0]
+      },
+      "properties": {
+        "bezeichnung": "Bahnhof Selnau (Sihlhölzlistrasse 3)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.51743697618552, 47.3858466043601, 0]
+      },
+      "properties": {
+        "bezeichnung": "Bahnhof Hardbrücke (Primetower)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.52799503582902, 47.3481918993549, 0]
+      },
+      "properties": {
+        "bezeichnung": "Jugendherberge (Mutschellenstrasse 114)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.49358768479876, 47.3985307933218, 0]
+      },
+      "properties": {
+        "bezeichnung": "Meierwiesenstrasse 4, Fischerweg bei Europabrücke",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54189690443741, 47.3942648283887, 0]
+      },
+      "properties": {
+        "bezeichnung": "Pauluskirche (Scheuchzerstrasse 181)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.5430480912705, 47.3741863763941, 0]
+      },
+      "properties": {
+        "bezeichnung": "Limmatquai",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54162459190898, 47.376043613419, 0]
+      },
+      "properties": {
+        "bezeichnung": "Beatenplatz",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54485663047969, 47.3662870065332, 0]
+      },
+      "properties": {
+        "bezeichnung": "Utoquai, Bushaltestelle Bellevue",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.52696504725095, 47.387708792302, 0]
+      },
+      "properties": {
+        "bezeichnung": "Otto-/ Limmatstrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.52404856624291, 47.4135750740433, 0]
+      },
+      "properties": {
+        "bezeichnung": "Zelglistrasse, Binzmühlestrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.56315268058945, 47.4109631361912, 0]
+      },
+      "properties": {
+        "bezeichnung": "Saatlen- / Wallisellenstrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.5374018846595, 47.379466223087, 0]
+      },
+      "properties": {
+        "bezeichnung": "Hauptbahnhof (Nord, Ausgang Sihlquai)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.57181732818536, 47.3817102869059, 0]
+      },
+      "properties": {
+        "bezeichnung": "Tramschlaufe Zoo",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.55140917509247, 47.3639108200295, 0]
+      },
+      "properties": {
+        "bezeichnung": "Kreuz-/Mühlebachstrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.53574403676952, 47.3856660474379, 0]
+      },
+      "properties": {
+        "bezeichnung": "Lux-Guyer-Weg (Höhe Oberer Letten)",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54802048317652, 47.3663213070362, 0]
+      },
+      "properties": {
+        "bezeichnung": "Stadelhoferplatz",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.55599371312217, 47.369386092169, 0]
+      },
+      "properties": {
+        "bezeichnung": "GZ Hottingen",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.5736999530396, 47.3988810465423, 0]
+      },
+      "properties": {
+        "bezeichnung": "Ziegelhütten",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.52170126811998, 47.3686258154437, 0]
+      },
+      "properties": {
+        "bezeichnung": "Gotthelf- / Zurlindenstrasse",
+        "typ": "Handpumpe"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [8.54829734495451, 47.3771859727875, 0]
+      },
+      "properties": {
+        "bezeichnung": "ETH Hauptgebäude, Rämistrasse",
+        "typ": "Handpumpe"
+      }
+    }
+  ]
+}
