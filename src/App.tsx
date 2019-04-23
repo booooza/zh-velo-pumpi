@@ -11,6 +11,7 @@ import { Store } from 'redux';
 // Import the store function and state
 import configureStore, { IAppState } from './store/Store';
 import { getAllFeatures } from './actions/FeatureActions';
+import { getLocation } from './actions/LocationActions';
 
 interface IProps {
   store: Store<IAppState>;
@@ -19,6 +20,7 @@ interface IProps {
 // Generate the store
 const store = configureStore();
 store.dispatch(getAllFeatures());
+store.dispatch(getLocation());
 
 // Render the App
 export default class App extends React.Component<IProps> {

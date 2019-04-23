@@ -12,10 +12,12 @@ import styles from './styles';
 import { connect } from 'react-redux';
 import { IAppState } from '../../store/Store';
 import { IFeature } from '../../reducers/featureReducer';
+import { ILocation } from '../../reducers/locationReducer';
 
 // Create the containers interface
 interface MapScreenProps {
   features: IFeature[];
+  location: ILocation;
   navigation: NavigationScreenProp<any, any>;
 }
 
@@ -34,15 +36,16 @@ class MapScreen extends Component<MapScreenProps> {
 
   public render() {
     const { features } = this.props;
+    const { location } = this.props;
     return (
       <View style={styles.container}>
         <MapView
           style={{ flex: 1 }}
           region={{
-            latitude: 47.3678913047179,
-            longitude: 8.54388787603914,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitude: location.latitude,
+            longitude: location.longitude,
+            latitudeDelta: location.longitudeDelta,
+            longitudeDelta: location.latitudeDelta,
           }}
         >
           {features.map((feature, index) => {
@@ -71,6 +74,7 @@ class MapScreen extends Component<MapScreenProps> {
 const mapStateToProps = (store: IAppState) => {
   return {
     features: store.featureState.features,
+    location: store.locationState.location,
   };
 };
 
