@@ -45,8 +45,21 @@ MainTabs.navigationOptions = ({ navigation }: NavigationScreenProps) => ({
   ),
 });
 
+const DirectionsStack = createStackNavigator(
+  {
+    Directions: {
+      screen: Directions,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
+
 const MainTabsStack = createStackNavigator({
   MainTabs,
+  DirectionsStack,
 });
 
 MainTabsStack.navigationOptions = {
@@ -74,24 +87,6 @@ AboutStack.navigationOptions = {
   ),
 };
 
-const DirectionsStack = createStackNavigator({
-  Directions: {
-    screen: Directions,
-  },
-});
-
-DirectionsStack.navigationOptions = ({
-  navigation,
-}: NavigationScreenProps) => ({
-  headerLeft: (
-    <Ionicons
-      name="md-menu"
-      style={styles.icon}
-      onPress={() => navigation.goBack()}
-    />
-  ),
-});
-
 const MainNavigator = createDrawerNavigator({
   MainTabsStack,
   SettingsStack,
@@ -99,7 +94,7 @@ const MainNavigator = createDrawerNavigator({
 });
 
 const RootSwitch = createSwitchNavigator(
-  { Loading, MainNavigator, DirectionsStack },
+  { Loading, MainNavigator },
   { initialRouteName: 'MainNavigator' }
 );
 

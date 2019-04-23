@@ -8,20 +8,22 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-type ListItemState = {
+interface ListItemState {
   data: object;
   index: number;
-  //   type: string;
-  //   latitude: number;
-  //   longitude: number;
-  //   bezeichnung: string;
-  //   typ: string;
-};
+}
 
-class ListItem extends PureComponent<
-  { data: object; onPressItem: any; index: number },
-  ListItemState
-> {
+interface ListItemProps {
+  data?: object;
+  onPressItem: any;
+  index: number;
+}
+
+class ListItem extends PureComponent<ListItemProps, ListItemState> {
+  public static defaultProps: Partial<ListItemProps> = {
+    data: { key: 'value' },
+  };
+
   constructor(props: any) {
     super(props);
   }

@@ -13,7 +13,7 @@ export interface ListScreenProps {
   navigation: NavigationScreenProp<any, any>;
 }
 
-class ListScreen extends Component<ListScreenProps, any> {
+class ListScreen extends Component<ListScreenProps> {
   static navigationOptions = ({ navigation }: NavigationScreenProps) => ({
     tabBarIcon: ({ tintColor }: TabScene) => {
       return <Ionicons name="md-list" color={tintColor} size={24} />;

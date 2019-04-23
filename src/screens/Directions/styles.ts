@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 32,
   },
+  iconRight: {
+    paddingRight: 10,
+    fontSize: 32,
+  },
 });
 
 export default styles;

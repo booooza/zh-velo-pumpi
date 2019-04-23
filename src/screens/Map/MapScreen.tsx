@@ -2,7 +2,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { MapView, Marker } from 'expo';
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { NavigationScreenProps, TabScene } from 'react-navigation';
+import {
+  NavigationScreenProps,
+  NavigationScreenProp,
+  TabScene,
+} from 'react-navigation';
 import styles from './styles';
 
 interface IMarker {
@@ -18,7 +22,11 @@ type MapState = {
   markers: IMarker[];
 };
 
-class MapScreen extends Component<{}, MapState> {
+export interface MapScreenProps {
+  navigation: NavigationScreenProp<any, any>;
+}
+
+class MapScreen extends Component<MapScreenProps, MapState> {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }: TabScene) => {
       return <Ionicons name="md-map" color={tintColor} size={24} />;
@@ -49,6 +57,11 @@ class MapScreen extends Component<{}, MapState> {
     };
   }
 
+  onPressItem = (index: number) => {
+    console.log(`Pressed marker: ${index}`);
+    this.props.navigation.navigate('Directions', { key: 'value' });
+  };
+
   public render() {
     return (
       <View style={styles.container}>
@@ -75,6 +88,7 @@ class MapScreen extends Component<{}, MapState> {
                     coordinate={coords}
                     title={marker.bezeichnung}
                     description={marker.typ}
+                    onCalloutPress={(index: number) => this.onPressItem(index)}
                   />
                 );
               })}
