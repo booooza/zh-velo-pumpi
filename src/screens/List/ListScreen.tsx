@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, TouchableHighlight, Image } from 'react-native';
 import styles from './styles';
 import { Ionicons } from '@expo/vector-icons';
 import {
@@ -9,7 +9,12 @@ import {
 } from 'react-navigation';
 import ListItem from '../../components/ListItem';
 
+import { connect } from 'react-redux';
+import { IAppState } from '../../store/Store';
+import { IFeature } from '../../reducers/featureReducer';
+
 export interface ListScreenProps {
+  features: IFeature[];
   navigation: NavigationScreenProp<any, any>;
 }
 
@@ -20,55 +25,30 @@ class ListScreen extends Component<ListScreenProps> {
     },
   });
 
-  constructor(props: any) {
-    super(props);
-
-    this.state = {
-      markers: [
-        {
-          type: 'Point',
-          latitude: 47.3760493207135,
-          longitude: 8.52563569881196,
-          bezeichnung: 'Helvetiaplatz',
-          typ: 'Handpumpe',
-        },
-        {
-          type: 'Point',
-          latitude: 47.3678913047179,
-          longitude: 8.54388787603914,
-          bezeichnung: 'Utoquai (Pier 7)',
-          typ: 'Handpumpe',
-        },
-      ],
-    };
-  }
-
-  keyExtractor = (item, index) => index.toString();
-
-  renderItem = ({ item }: { item: any }) => (
-    <ListItem
-      data={item}
-      index={item.bezeichnung}
-      onPressItem={this.onPressItem}
-    />
+  renderItem = ({ item }: { item: IFeature }) => (
+    // <Text>{item.properties.bezeichnung}</Text>
+    <ListItem feature={item} onPressItem={this.onPressItem} />
   );
+
+  keyExtractor = (item: IFeature, index: number) => item.properties.bezeichnung;
 
   renderSeparator = () => (
     <View style={{ height: 1, width: '100%', backgroundColor: 'gray' }} />
   );
 
-  onPressItem = (index: string) => {
-    console.log(`Pressed row: ${index}`);
-    this.props.navigation.navigate('Directions', { key: 'value' });
+  onPressItem = (feature: IFeature) => {
+    console.log(`Pressed feature: ${feature.properties.bezeichnung}`);
+
+    this.props.navigation.navigate('Directions', { feature });
   };
 
   public render() {
-    const { markers } = this.state;
+    const { features } = this.props;
 
     return (
       <View>
         <FlatList
-          data={this.state.markers}
+          data={features}
           renderItem={this.renderItem}
           keyExtractor={this.keyExtractor}
         />
@@ -77,4 +57,11 @@ class ListScreen extends Component<ListScreenProps> {
   }
 }
 
-export default ListScreen;
+// Grab the features from the store and make them available on props
+const mapStateToProps = (store: IAppState) => {
+  return {
+    features: store.featureState.features,
+  };
+};
+
+export default connect(mapStateToProps)(ListScreen);

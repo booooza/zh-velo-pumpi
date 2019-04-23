@@ -7,33 +7,24 @@ import {
   Image,
 } from 'react-native';
 import styles from './styles';
-
-interface ListItemState {
-  data: object;
-  index: number;
-}
+import { IFeature } from '../../reducers/featureReducer';
 
 interface ListItemProps {
-  data?: object;
+  feature: IFeature;
   onPressItem: any;
-  index: number;
 }
 
-class ListItem extends PureComponent<ListItemProps, ListItemState> {
-  public static defaultProps: Partial<ListItemProps> = {
-    data: { key: 'value' },
-  };
-
-  constructor(props: any) {
+class ListItem extends PureComponent<ListItemProps> {
+  constructor(props: ListItemProps) {
     super(props);
   }
 
   onPress = () => {
-    this.props.onPressItem(this.props.index);
+    this.props.onPressItem(this.props.feature);
   };
 
   public render() {
-    const item = this.props.data;
+    const { feature } = this.props;
     const thumb = require('../../../assets/baloon.png');
 
     return (
@@ -42,8 +33,8 @@ class ListItem extends PureComponent<ListItemProps, ListItemState> {
           <View style={styles.rowContainer}>
             <Image style={styles.thumb} source={thumb} />
             <View style={styles.textContainer}>
-              <Text style={styles.title}>{item.bezeichnung}</Text>
-              <Text style={styles.type}>{item.typ}</Text>
+              <Text style={styles.title}>{feature.properties.bezeichnung}</Text>
+              <Text style={styles.type}>{feature.properties.typ}</Text>
             </View>
             <View style={styles.distanceContainer}>
               <Text style={styles.distance}>1 km</Text>

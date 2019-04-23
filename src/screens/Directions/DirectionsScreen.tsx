@@ -1,19 +1,37 @@
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
 import styles from './styles';
+import { NavigationScreenProp } from 'react-navigation';
 
-class DirectionsScreen extends Component {
+import { connect } from 'react-redux';
+import { IAppState } from '../../store/Store';
+import { IFeature } from '../../reducers/featureReducer';
+
+export interface DirectionsScreenProps {
+  feature: IFeature;
+  navigation: NavigationScreenProp<any>;
+}
+
+class DirectionsScreen extends Component<DirectionsScreenProps> {
   static navigationOptions = {
     title: 'Directions',
   };
 
   public render() {
+    const { feature } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
-        <Text>This is the DirectionsScreen.</Text>
+        <Text>Directions to {feature.properties.bezeichnung}.</Text>
       </View>
     );
   }
 }
 
-export default DirectionsScreen;
+// Grab the features from the store and make them available on props
+const mapStateToProps = (store: IAppState) => {
+  return {
+    features: store.featureState.features,
+  };
+};
+
+export default connect(mapStateToProps)(DirectionsScreen);

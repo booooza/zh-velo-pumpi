@@ -9,60 +9,31 @@ import {
 } from 'react-navigation';
 import styles from './styles';
 
-interface IMarker {
-  type: string;
-  latitude: number;
-  longitude: number;
-  bezeichnung: string;
-  typ: string;
-}
+import { connect } from 'react-redux';
+import { IAppState } from '../../store/Store';
+import { IFeature } from '../../reducers/featureReducer';
 
-type MapState = {
-  isLoading: boolean;
-  markers: IMarker[];
-};
-
-export interface MapScreenProps {
+// Create the containers interface
+interface MapScreenProps {
+  features: IFeature[];
   navigation: NavigationScreenProp<any, any>;
 }
 
-class MapScreen extends Component<MapScreenProps, MapState> {
+class MapScreen extends Component<MapScreenProps> {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }: TabScene) => {
       return <Ionicons name="md-map" color={tintColor} size={24} />;
     },
   };
 
-  constructor(props: any) {
-    super(props);
+  onPressItem = (feature: IFeature) => {
+    console.log(`Pressed feature: ${feature.properties.bezeichnung}`);
 
-    this.state = {
-      isLoading: false,
-      markers: [
-        {
-          type: 'Point',
-          latitude: 47.3760493207135,
-          longitude: 8.52563569881196,
-          bezeichnung: 'Helvetiaplatz',
-          typ: 'Handpumpe',
-        },
-        {
-          type: 'Point',
-          latitude: 47.3678913047179,
-          longitude: 8.54388787603914,
-          bezeichnung: 'Utoquai (Pier 7)',
-          typ: 'Handpumpe',
-        },
-      ],
-    };
-  }
-
-  onPressItem = (index: number) => {
-    console.log(`Pressed marker: ${index}`);
-    this.props.navigation.navigate('Directions', { key: 'value' });
+    this.props.navigation.navigate('Directions', { feature });
   };
 
   public render() {
+    const { features } = this.props;
     return (
       <View style={styles.container}>
         <MapView
@@ -74,28 +45,33 @@ class MapScreen extends Component<MapScreenProps, MapState> {
             longitudeDelta: 0.0421,
           }}
         >
-          {this.state.isLoading
-            ? null
-            : this.state.markers.map((marker: IMarker, index: number) => {
-                const coords = {
-                  latitude: marker.latitude,
-                  longitude: marker.longitude,
-                };
+          {features.map((feature, index) => {
+            const coords = {
+              latitude: feature.geometry.coordinates[1],
+              longitude: feature.geometry.coordinates[0],
+            };
 
-                return (
-                  <MapView.Marker
-                    key={index}
-                    coordinate={coords}
-                    title={marker.bezeichnung}
-                    description={marker.typ}
-                    onCalloutPress={(index: number) => this.onPressItem(index)}
-                  />
-                );
-              })}
+            return (
+              <MapView.Marker
+                key={index}
+                coordinate={coords}
+                title={feature.properties.bezeichnung}
+                description={feature.properties.typ}
+                onCalloutPress={() => this.onPressItem(feature)}
+              />
+            );
+          })}
         </MapView>
       </View>
     );
   }
 }
 
-export default MapScreen;
+// Grab the features from the store and make them available on props
+const mapStateToProps = (store: IAppState) => {
+  return {
+    features: store.featureState.features,
+  };
+};
+
+export default connect(mapStateToProps)(MapScreen);
